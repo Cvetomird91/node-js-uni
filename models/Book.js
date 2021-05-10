@@ -6,6 +6,7 @@ const BookSchema = new Schema ({
     ISBN: String,
     date: Date,
     cover: String,
+    author: String,
 });
 
 const Book = mongoose.model("Book", BookSchema);

@@ -9,6 +9,7 @@ export default gql`
         ISBN: String!
         date: String!
         cover: String!
+        author: String!
     }
 
     type Book {
@@ -17,6 +18,7 @@ export default gql`
         ISBN: String!
         date: ISODate!
         cover: String!
+        author: String!
         isDeleted: String
     }
 
