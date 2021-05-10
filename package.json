@@ -1,0 +1,43 @@
+{
+  "name": "nodejs-graphql-pu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon -- exec babel-node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cvetomird91/node-js-uni.git"
+  },
+  "keywords": [
+    "graphql",
+    "es6"
+  ],
+  "author": "T. Denchev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cvetomird91/node-js-uni/issues"
+  },
+  "homepage": "https://github.com/Cvetomird91/node-js-uni#readme",
+  "dependencies": {
+    "apollo-server": "^2.24.0",
+    "apollo-server-express": "^2.24.0",
+    "dotenv": "^9.0.1",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-tools": "^7.0.4",
+    "mongoose": "^5.12.7",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  }
+}
