@@ -19,10 +19,7 @@ export default `
 
     type Mutation {
         addReader(data: ReaderInput!): Reader
-    }
-`
-/*
         editReader(_id: String!, data: ReaderInput!): Reader
         deleteReader(_id: String!): Reader
-
-*/
+    }
+`
