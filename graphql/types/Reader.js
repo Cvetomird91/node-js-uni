@@ -19,7 +19,7 @@ export default `
 
     type Mutation {
         addReader(data: ReaderInput!): Reader
-        editUser(_id: String!, data: ReaderInput!): Reader
-        deleteBook(_id: String!): Reader
+        editReader(_id: String!, data: ReaderInput!): Reader
+        deleteReader(_id: String!): Reader
     }
 `

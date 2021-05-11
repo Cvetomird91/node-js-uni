@@ -46,6 +46,11 @@ export default {
             book[0].numberOfCopies = bookCopies.length;
 
             return book[0];
+        },
+        editBook: async (root, {_id, data}) => {
+            const book = await Book.findByIdAndUpdate(_id,
+                {$set: data}, {new: true});
+            return book;
         }
     },
     ISODate: GraphQLDateTime

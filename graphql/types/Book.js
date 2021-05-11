@@ -6,7 +6,7 @@ export default gql`
 
     input BookInput {
         title: String!
-        ISBN: String!
+        ISBN: String
         date: String!
         cover: String!
         author: String!
@@ -31,11 +31,6 @@ export default gql`
     type Mutation {
         addTitle(data: BookInput!): Book
         addBookCopy(ISBN: String!): Book
+        editBook(_id: String!, data: BookInput!): Book
     }
-
 `
-
-/*
-        editUser(_id: String!, data: BookInput!): Book
-        deleteBook(_id: String!): Book
-*/
