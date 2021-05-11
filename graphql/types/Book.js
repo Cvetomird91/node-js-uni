@@ -19,6 +19,7 @@ export default gql`
         date: ISODate!
         cover: String!
         author: String!
+        copies: Int!
         isDeleted: String
     }
 
@@ -28,7 +29,8 @@ export default gql`
     }
 
     type Mutation {
-        addBook(data: BookInput!): Book
+        addTitle(data: BookInput!): Book
+        addBookCopy(ISBN: String!): Book
     }
 
 `
