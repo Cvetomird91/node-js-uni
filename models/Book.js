@@ -10,7 +10,11 @@ const BookSchema = new Schema ({
     date: Date,
     cover: String,
     author: String,
-    copies: Number,
+    copies: [{
+        type: Schema.Types.ObjectId,
+        ref: 'BookCopy' 
+    }],
+    numberOfCopies: Number,
 });
 
 const Book = mongoose.model("Book", BookSchema);

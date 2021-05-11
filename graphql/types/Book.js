@@ -19,7 +19,7 @@ export default gql`
         date: ISODate!
         cover: String!
         author: String!
-        copies: Int!
+        numberOfCopies: Int
         isDeleted: String
     }
 
