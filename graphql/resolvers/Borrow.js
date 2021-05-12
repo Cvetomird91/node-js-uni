@@ -4,19 +4,29 @@ import Reader from "../../models/Reader.js";
 import { UserInputError } from "apollo-server";
 
 export default {
+    Query: {
+        borrow: async (root, {_id}) => {
+            return getBookBorrowData(_id);
+        },
+        borrows: async () => {
+            const borrows = await Borrow.find({});
+            const updatedBorrows = [];
+
+            for await (const borrow of borrows) {
+                const updatedBorrow = populateBorrowData(borrow);
+                updatedBorrows.push(updatedBorrow);
+            }
+            return updatedBorrows;
+        }
+    },
     Mutation: {
         borrowBook: async (root, args) => {
 
-            //to do: check if book copy exists, if book copy is available and if reader exits and active
             //to do: add mutation to mark a book as returned
-            //to do: query a borrow
-            //to do: query all borrows
 
             //check if the book copy is already borrowed
             const bookBorrow = await Borrow.find({bookCopy: args.data.bookCopyId});
             const reader = await Reader.findById(args.data.readerId);
-
-            console.log(reader);
 
             if (reader.status == 0) {
                 throw new UserInputError("The reader is not active! reader id: ${args.data.readerId}");
@@ -46,6 +56,25 @@ export default {
             newBorrow.book = bookCopy.bookId;
 
             return newBorrow;
+        },
+        returnBook: async (root, {bookCopyId}) => {
+            const bookBorrow = await Borrow.find({bookCopy: bookCopyId, status: 1});
+            bookBorrow[0].status = 0;
+            await bookBorrow[0].save();
+            return await populateBorrowData(bookBorrow[0]);
         }
     }
+}
+
+const getBookBorrowData = async (id) => {
+    const bookBorrow = await Borrow.findById(id);
+    return await populateBorrowData(bookBorrow);
+}
+
+const populateBorrowData = async (borrow) => {
+    const reader = await Reader.findById(borrow.readerId);
+    const bookCopy = await BookCopy.findById(borrow.bookCopy).populate("bookId");
+    borrow.reader = reader;
+    borrow.book = bookCopy.bookId;
+    return borrow;
 }

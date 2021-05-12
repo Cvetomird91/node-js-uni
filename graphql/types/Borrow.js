@@ -21,17 +21,13 @@ export default gql`
         status: Int
     }
 
-    type Mutation {
-        borrowBook(data: BorrowInput!): Borrow
-    }
-`
-
-/*
-
-    Query {
+    type Query {
         borrow(_id: String!): Borrow
         borrows: [Borrow]
     }
 
-
-*/
+    type Mutation {
+        borrowBook(data: BorrowInput!): Borrow
+        returnBook(bookCopyId: String!): Borrow
+    }
+`
