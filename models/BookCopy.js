@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const BookCopySchema = new Schema ({
     bookId: {
         type: Schema.Types.ObjectId,
-        ref: 'Book' 
+        ref: 'Book',
     },
     status: Number,
 });
