@@ -6,6 +6,10 @@ const BorrowSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'BookCopy' 
     },
+    book: {
+        type: Schema.Types.ObjectId,
+        ref: 'Book' 
+    },
     readerId: {
         type: Schema.Types.ObjectId,
         ref: 'Reader' 
