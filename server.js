@@ -28,7 +28,7 @@ async function startApolloServer() {
     introspection: true,
     playground: true,
     context: ({req}) => {
-        if (req.body.query.contains("login")) {
+        if (req.body.query.includes("login")) {
           return null;
         }
         const token = req.headers.authentication;
