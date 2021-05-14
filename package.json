@@ -5,8 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon -- exec babel-node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon -- exec babel-node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Cvetomird91/node-js-uni/issues"
   },
-  "homepage": "https://github.com/Cvetomird91/node-js-uni#readme",
+  "homepage": "https://github.com/Cvetomird91/node-js-uni",
   "dependencies": {
     "apollo-server": "^2.24.0",
     "apollo-server-express": "^2.24.0",
