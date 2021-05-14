@@ -3,6 +3,7 @@ import {ApolloServer} from "apollo-server-express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import schema from "./graphql/graphql-schema.js";
+import { verifyToken } from "./helpers/jwt.js";
 
 dotenv.config();
 
@@ -26,6 +27,10 @@ async function startApolloServer() {
     schema,
     introspection: true,
     playground: true,
+    context: ({req}) => {
+        const token = req.headers.authentication;
+        return verifyToken(token);
+    }
   });
 
   const app = express();

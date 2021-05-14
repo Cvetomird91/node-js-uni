@@ -6,11 +6,6 @@ import jwt from "jsonwebtoken";
 export default {
     Mutation: {
         login: async (root, {email, password}, context) => {
-            console.log(context);
-
-            if (!context.authSuccessful) {
-                throw(context.error);
-            }
             const user = await User.find({email});
 
             if (!user) {
@@ -41,7 +36,10 @@ export default {
 
             return token;
         },
-        logout: async(root, {email}) => {
+        logout: async(root, {email}, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
             const user = await User.find({email: email});
             user[0].logged = false;
             await user[0].save();

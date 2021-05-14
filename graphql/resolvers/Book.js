@@ -19,7 +19,10 @@ export default {
         }
     },
     Mutation: {
-        addTitle: async (root, args) => {
+        addTitle: async (root, args, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
             const bookPublishDate = new Date(args.data.date);
             args.data.date = bookPublishDate;
             const bookData = new Book(args.data);
@@ -28,7 +31,11 @@ export default {
 
             return bookData;
         },
-        addBookCopy: async(root, {ISBN}) => {
+        addBookCopy: async(root, {ISBN}, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
+
             const book = await Book.find({ISBN}).populate("copies");
 
             const newCopy = new BookCopy({bookId: book[0]._id.toString(), status: 1});
@@ -47,7 +54,11 @@ export default {
 
             return book[0];
         },
-        editBook: async (root, {_id, data}) => {
+        editBook: async (root, {_id, data}, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
+
             const book = await Book.findByIdAndUpdate(_id,
                 {$set: data}, {new: true});
             return book;

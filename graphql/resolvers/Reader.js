@@ -12,12 +12,20 @@ export default {
         }
     },
     Mutation: {
-        addReader: async (root, args) => {
+        addReader: async (root, args, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
+
             const newReader = new Reader({...args.data, status: 1});
             await newReader.save();
             return newReader;
         },
-        editReader: async(root, {_id, data}) => {
+        editReader: async(root, {_id, data}, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
+
             const reader = await Reader.findByIdAndUpdate(_id,
                 {$set: data},
                 {
@@ -25,7 +33,11 @@ export default {
                 });
             return reader;
         },
-        deleteReader: async (root, {_id}) => {
+        deleteReader: async (root, {_id}, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
+
             //implement soft delete for readers
             const reader = await Reader.findById(_id);
             reader.status = 0;

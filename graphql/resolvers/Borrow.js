@@ -20,7 +20,10 @@ export default {
         }
     },
     Mutation: {
-        borrowBook: async (root, args) => {
+        borrowBook: async (root, args, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
 
             //to do: add mutation to mark a book as returned
 
@@ -57,7 +60,11 @@ export default {
 
             return newBorrow;
         },
-        returnBook: async (root, {bookCopyId}) => {
+        returnBook: async (root, {bookCopyId}, context) => {
+            if (!context.authSuccessful) {
+                throw(context.error);
+            }
+
             const bookBorrow = await Borrow.find({bookCopy: bookCopyId, status: 1});
             bookBorrow[0].status = 0;
             await bookBorrow[0].save();
