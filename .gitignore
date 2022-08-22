@@ -1,4 +1,7 @@
 .idea
 node_modules
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
 package-lock.json
 nodejs-graphql-pu.iml
