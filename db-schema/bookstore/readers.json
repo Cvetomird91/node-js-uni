@@ -1,0 +1,3 @@
+{ "_id" : { "$oid" : "609aee966fbcdd17db4d3d9a" }, "firstName" : "Next", "lastName" : "Level", "__v" : 0, "status" : 1 }
+{ "_id" : { "$oid" : "609aeed1a4a0d6192e5e8e1b" }, "firstName" : "NextLevel", "lastName" : "Jedi", "status" : 1, "__v" : 0 }
+{ "_id" : { "$oid" : "609aee8a6fbcdd17db4d3d99" }, "firstName" : "Tsvetomir", "lastName" : "Denchev", "__v" : 0, "status" : 1 }
