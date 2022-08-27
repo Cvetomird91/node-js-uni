@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script type="application/javascript">
+         $(document).ready(function() {
+              $.ajax({
+                  method: "POST",
+                  url: "http://localhost:3000/graphql",
+                  contentType: "application/json",
+                  beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authentication', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2MjA5NDUyMjgsImV4cCI6MTYyMTAzMTYyOH0.IujCPXIBuqcYoHiJ4EZAwYPAUMEfp8L7J470sGDDpSU');
+                  },
+                  data: JSON.stringify({
+                    query: `query {
+                    borrow(_id:"609b8874f8f1f741248a68ab") {
+                      _id
+                      book {
+                        _id
+                        title
+                        ISBN
+                      }
+                      reader {
+                        _id
+                        firstName
+                        lastName
+                      }
+                      dateFrom
+                      dateTo
+                    }
+                  }`
+              })
+            })
+         });
+    </script>
+</head>
+<body>
+
+</body>
