@@ -1,0 +1,114 @@
+query {
+  borrow(_id:"609b8874f8f1f741248a68ab") {
+    _id
+   book {
+      _id
+      title
+      ISBN
+    }
+    reader {
+      _id
+      firstName
+      lastName
+    }
+    dateFrom
+    dateTo
+  }
+}
+
+mutation {
+  login(email:"changedemail@gmail.com", password:"nextlevelpass")
+}
+
+mutation {
+  editBook (_id:"609e620a51303b6c6d386794", data:{
+    author: "Edgar Alan Poe",
+    title: "A Descent into the Maelström",
+    ISBN:"9781545304280",
+    date:"1919-01-01",
+    cover:"https://upload.wikimedia.org/wikipedia/commons/4/45/Maelstrom-Clarke.jpg"
+  }){
+    _id
+    author
+    title
+    ISBN
+    date
+    cover
+  }
+}
+
+mutation {
+  addBookCopy(ISBN: "978-0451524935") {
+    _id
+  	title
+    numberOfCopies
+  }
+}
+
+mutation {
+  editBook(_id:"60999f1948d0c310bb55f40c", data:{
+        title: "The Hunchback of Notre-Dame",
+        date: "1831-03-16T00:00:00.000Z",
+        cover: "https://images-na.ssl-images-amazon.com/images/I/41CB164PM5L._SX325_BO1,204,203,200_.jpg",
+        author: "Victor Hugo 2"
+  }) {
+    _id
+    title
+    ISBN
+    date
+    cover
+    author
+  }
+}
+
+mutation {
+  addReader(data:{
+    firstName:"NextLevel",
+    lastName:"Jedi",
+  }) {
+    _id
+    firstName
+    lastName
+    status
+  }
+}
+
+mutation {
+  borrowBook(data: {
+    bookCopyId:"609ad74818789450a9b5ffb7",
+    readerId:"609aeed1a4a0d6192e5e8e1b",
+    dateFrom: "12-05-2021",
+    dateTo: "12-06-2021"
+  }) {
+    book {
+      _id
+      title
+      ISBN
+    }
+    reader {
+      _id
+      firstName
+      lastName
+    }
+    dateFrom
+    dateTo
+  }
+}
+
+mutation {
+  returnBook(bookCopyId:"609ad74818789450a9b5ffb7"){
+        _id
+   book {
+      _id
+      title
+      ISBN
+    }
+    reader {
+      _id
+      firstName
+      lastName
+    }
+    dateFrom
+    dateTo
+  }
+}
