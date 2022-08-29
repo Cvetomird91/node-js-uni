@@ -2,6 +2,13 @@ resource "aws_alb" "main" {
   name            = "${var.ecs_service_name}-load-balancer"
   subnets         = aws_subnet.public.*.id
   security_groups = [aws_security_group.lb.id]
+
+  access_logs {
+    bucket  = aws_s3_bucket.lb_logs.id
+    prefix  = "test-lb"
+    enabled = true
+  }
+
 }
 
 resource "aws_alb_target_group" "nginx" {

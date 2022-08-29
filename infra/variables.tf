@@ -43,7 +43,7 @@ variable "bookstore_service_fargate_cpu" {
 }
 
 variable "bookstore_service_fargate_memory" {
-  description = "Fargate instance memory to provision for NGINX (in MiB)"
+  description = "Fargate instance memory to provision for nodejs backend service (in MiB)"
   default     = 512
 }
 
