@@ -23,7 +23,7 @@ resource "aws_alb_target_group" "nginx" {
     interval            = "30"
     protocol            = "HTTP"
     matcher             = "304"
-    timeout             = "10"
+    timeout             = "20"
     path                = "/"
     unhealthy_threshold = "2"
   }
