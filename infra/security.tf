@@ -19,7 +19,7 @@ resource "aws_security_group" "lb" {
   }
 }
 
-resource "aws_security_group" "nginx_task" {
+resource "aws_security_group" "bookstore_app_task" {
   name        = "${var.ecs_service_name}-bookstore_app-task-security-group"
   description = "allow inbound access to the bookstore_app task from the ALB only"
   vpc_id      = aws_vpc.main.id

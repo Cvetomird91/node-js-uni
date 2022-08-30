@@ -65,7 +65,7 @@ resource "aws_ecs_service" "bookstore" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    security_groups  = [aws_security_group.app_task.id, aws_security_group.nginx_task.id]
+    security_groups  = [aws_security_group.app_task.id, aws_security_group.bookstore_app_task.id]
     subnets          = aws_subnet.private.*.id
     assign_public_ip = true
   }
@@ -82,5 +82,5 @@ resource "aws_ecs_service" "bookstore" {
     container_port   = var.bookstore_service_port
   }
 
-  depends_on = [ aws_alb_listener.front_end, aws_iam_role_policy_attachment.ecs_task_execution_role ]
+  depends_on = [ aws_alb_listener.bookstore_app_listener, aws_iam_role_policy_attachment.ecs_task_execution_role ]
 }

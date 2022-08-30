@@ -5,7 +5,7 @@ resource "aws_alb" "main" {
 
   access_logs {
     bucket  = aws_s3_bucket.lb_logs.id
-    prefix  = "test-lb"
+    prefix  = "bookstore-lb-logs"
     enabled = true
   }
 
@@ -30,7 +30,7 @@ resource "aws_alb_target_group" "bookstore_alb" {
 }
 
 # Redirect all traffic from the ALB to the target group
-resource "aws_alb_listener" "front_end" {
+resource "aws_alb_listener" "bookstore_app_listener" {
   load_balancer_arn = aws_alb.main.id
   port              = var.bookstore_app_port
   protocol          = "HTTP"
@@ -50,7 +50,7 @@ resource "aws_alb_target_group" "graphql_alb" {
 }
 
 resource "aws_alb_listener_rule" "graphql" {
-  listener_arn = aws_alb_listener.front_end.arn
+  listener_arn = aws_alb_listener.bookstore_app_listener.arn
   priority     = 99
 
   action {
