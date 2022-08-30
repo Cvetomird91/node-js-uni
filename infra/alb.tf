@@ -11,7 +11,7 @@ resource "aws_alb" "main" {
 
 }
 
-resource "aws_alb_target_group" "nginx" {
+resource "aws_alb_target_group" "bookstore_alb" {
   name        = "${var.ecs_service_name}-target-group"
   port        = var.bookstore_app_port
   protocol    = "HTTP"
@@ -20,10 +20,10 @@ resource "aws_alb_target_group" "nginx" {
 
   health_check {
     healthy_threshold   = "3"
-    interval            = "30"
+    interval            = "35"
     protocol            = "HTTP"
     matcher             = "304"
-    timeout             = "20"
+    timeout             = "30"
     path                = "/"
     unhealthy_threshold = "2"
   }
@@ -36,7 +36,32 @@ resource "aws_alb_listener" "front_end" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_alb_target_group.nginx.id
+    target_group_arn = aws_alb_target_group.bookstore_alb.id
     type             = "forward"
   }
+}
+
+resource "aws_alb_target_group" "graphql_alb" {
+  name        = "graphql-target-group"
+  port        = var.bookstore_service_port
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.main.id
+  target_type = "ip"
+}
+
+resource "aws_alb_listener_rule" "graphql" {
+  listener_arn = aws_alb_listener.front_end.arn
+  priority     = 99
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.graphql_alb.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/graphql"]
+    }
+  }
+
 }

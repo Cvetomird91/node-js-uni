@@ -65,15 +65,21 @@ resource "aws_ecs_service" "bookstore" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    security_groups  = [aws_security_group.app_task.id]
+    security_groups  = [aws_security_group.app_task.id, aws_security_group.nginx_task.id]
     subnets          = aws_subnet.private.*.id
     assign_public_ip = true
   }
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.nginx.id
+    target_group_arn = aws_alb_target_group.bookstore_alb.id
     container_name   = "bookstore_app"
     container_port   = var.bookstore_app_port
+  }
+
+  load_balancer {
+    target_group_arn = aws_alb_target_group.graphql_alb.id
+    container_name   = "bookstore_service"
+    container_port   = var.bookstore_service_port
   }
 
   depends_on = [ aws_alb_listener.front_end, aws_iam_role_policy_attachment.ecs_task_execution_role ]
