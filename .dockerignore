@@ -1,2 +1,7 @@
 front-end-app
 node_modules
+infra
+.idea
+.terraform
+queries.graphql
+README.md
