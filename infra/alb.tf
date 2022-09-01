@@ -19,13 +19,14 @@ resource "aws_alb_target_group" "bookstore_alb" {
   target_type = "ip"
 
   health_check {
-    healthy_threshold   = "3"
-    interval            = "35"
+    healthy_threshold   = "2"
+    interval            = "5"
     protocol            = "HTTP"
-    matcher             = "304"
-    timeout             = "30"
+    matcher             = "200,202,304"
+    timeout             = "4"
     path                = "/"
-    unhealthy_threshold = "2"
+    port                = 80
+    unhealthy_threshold = "10"
   }
 }
 
@@ -47,6 +48,18 @@ resource "aws_alb_target_group" "graphql_alb" {
   protocol    = "HTTP"
   vpc_id      = aws_vpc.main.id
   target_type = "ip"
+
+  health_check {
+    healthy_threshold   = "2"
+    interval            = "5"
+    protocol            = "HTTP"
+    matcher             = "200,202,304,404"
+    timeout             = "4"
+    port                = 3000
+    path                = "/graphql"
+    unhealthy_threshold = "10"
+  }
+
 }
 
 resource "aws_alb_listener_rule" "graphql" {

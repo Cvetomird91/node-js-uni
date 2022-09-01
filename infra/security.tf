@@ -20,7 +20,7 @@ resource "aws_security_group" "lb" {
 }
 
 resource "aws_security_group" "bookstore_app_task" {
-  name        = "${var.ecs_service_name}-bookstore_app-task-security-group"
+  name        = "${var.ecs_service_name}_app-task-security-group"
   description = "allow inbound access to the bookstore_app task from the ALB only"
   vpc_id      = aws_vpc.main.id
 
@@ -28,7 +28,7 @@ resource "aws_security_group" "bookstore_app_task" {
     protocol        = "tcp"
     from_port       = 0
     to_port         = var.bookstore_app_port
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = [aws_vpc.main.cidr_block]
   }
 
   egress {
@@ -39,8 +39,8 @@ resource "aws_security_group" "bookstore_app_task" {
   }
 }
 
-resource "aws_security_group" "app_task" {
-  name        = "${var.ecs_service_name}-app-task-security-group"
+resource "aws_security_group" "bookstore_service_task" {
+  name        = "${var.ecs_service_name}_service-task-security-group"
   description = "allow inbound access to the Application task from the ALB only"
   vpc_id      = aws_vpc.main.id
 
@@ -48,7 +48,7 @@ resource "aws_security_group" "app_task" {
     protocol        = "tcp"
     from_port       = 0
     to_port         = var.bookstore_service_port
-    cidr_blocks = [ aws_vpc.main.cidr_block ]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
