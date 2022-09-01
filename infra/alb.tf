@@ -53,7 +53,7 @@ resource "aws_alb_target_group" "graphql_alb" {
     healthy_threshold   = "2"
     interval            = "5"
     protocol            = "HTTP"
-    matcher             = "200,202,304,404"
+    matcher             = "200,202,304,404,500"
     timeout             = "4"
     port                = 3000
     path                = "/graphql"

@@ -6,7 +6,7 @@ resource "aws_security_group" "lb" {
 
   ingress {
     protocol    = "tcp"
-    from_port   = 0
+    from_port   = var.bookstore_app_port
     to_port     = var.bookstore_app_port
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -26,8 +26,9 @@ resource "aws_security_group" "bookstore_app_task" {
 
   ingress {
     protocol        = "tcp"
-    from_port       = 0
+    from_port       = var.bookstore_app_port
     to_port         = var.bookstore_app_port
+    security_groups = [aws_security_group.lb.id]
     cidr_blocks     = [aws_vpc.main.cidr_block]
   }
 
@@ -46,8 +47,9 @@ resource "aws_security_group" "bookstore_service_task" {
 
   ingress {
     protocol        = "tcp"
-    from_port       = 0
+    from_port       = var.bookstore_app_port
     to_port         = var.bookstore_service_port
+    security_groups = [aws_security_group.lb.id]
     cidr_blocks = ["0.0.0.0/0"]
   }
 
