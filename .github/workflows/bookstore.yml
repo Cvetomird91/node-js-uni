@@ -11,4 +11,4 @@ jobs:
 #      - run: "docker build -t bookstore:latest ."
 #      - run: "docker tag bookstore:latest 341871682637.dkr.ecr.eu-central-1.amazonaws.com/bookstore-application:latest"
       - run: "pwd"
-      - run: "ls"
+      - run: "ls .."
