@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-          uses: Cvetomird91/node-js-uni@master
+          uses: actions/checkout@v3
       - run: "docker build -t bookstore:latest ."
       - run: "docker tag bookstore:latest 341871682637.dkr.ecr.eu-central-1.amazonaws.com/bookstore-application:latest"
