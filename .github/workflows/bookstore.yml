@@ -1,0 +1,11 @@
+name: Bookstore service build & deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  Bookstore-app-build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: "docker build -t bookstore:latest ."
+      - run: "docker tag bookstore:latest 341871682637.dkr.ecr.eu-central-1.amazonaws.com/bookstore-application:latest"
