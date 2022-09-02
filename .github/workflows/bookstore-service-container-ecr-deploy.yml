@@ -16,8 +16,8 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: "docker build -t bookstore:latest ."
-      - run: "docker tag bookstore:latest 341871682637.dkr.ecr.eu-central-1.amazonaws.com/bookstore-application:latest"
+      - run: "docker build -t bookstore-service:latest ."
+      - run: "docker tag bookstore-service:latest 341871682637.dkr.ecr.eu-central-1.amazonaws.com/bookstore-service:latest"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
