@@ -28,8 +28,6 @@ async function startApolloServer() {
     introspection: true,
     playground: true,
     context: ({req}) => {
-        console.log(req);
-
         //used for AWS ALB health checks
         if (!req.body.query) {
             return null;
