@@ -11,7 +11,7 @@ on:
       - 'db-schema/**'
       - '.github/**'
 jobs:
-  Bookstore-app-build:
+  Bookstore-service-build:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
