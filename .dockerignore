@@ -5,3 +5,4 @@ infra
 .terraform
 queries.graphql
 README.md
+db-schema

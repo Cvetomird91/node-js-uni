@@ -9,6 +9,7 @@ on:
       - 'infra/**'
       - 'queries.graphql'
       - 'db-schema/**'
+      - '.github/**'
 jobs:
   Bookstore-app-build:
     runs-on: ubuntu-latest
