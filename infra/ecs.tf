@@ -17,14 +17,6 @@ resource "aws_ecs_task_definition" "bookstore" {
         cpu = var.bookstore_app_fargate_cpu
         memory = var.bookstore_app_fargate_memory
         networkMode = "awsvpc"
-        logConfiguration = {
-          logDriver = "awslogs"
-          options = {
-            awslogs-group = "/ecs/${var.ecs_service_name}-bookstore_app"
-            awslogs-region = var.aws_region
-            awslogs-stream-prefix = "ecs"
-          }
-        }
         portMappings = [
           {
             containerPort = var.bookstore_app_port
@@ -38,14 +30,6 @@ resource "aws_ecs_task_definition" "bookstore" {
         cpu = var.bookstore_service_fargate_cpu
         memory = var.bookstore_service_fargate_memory
         networkMode = "awsvpc"
-        logConfiguration = {
-          logDriver = "awslogs"
-          options = {
-            awslogs-group = "/ecs/${var.ecs_service_name}-bookstore_service"
-            awslogs-region = var.aws_region
-            awslogs-stream-prefix = "ecs"
-          }
-        }
         portMappings = [
           {
             containerPort = var.bookstore_service_port
