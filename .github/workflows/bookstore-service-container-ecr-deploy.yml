@@ -10,6 +10,7 @@ on:
       - 'queries.graphql'
       - 'db-schema/**'
       - '.github/**'
+  workflow_dispatch
 jobs:
   Bookstore-service-build:
     runs-on: ubuntu-latest
