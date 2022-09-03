@@ -5,7 +5,7 @@ on:
       - master
     paths:
       - 'front-end-app/**'
-  workflow_dispatch
+  workflow_dispatch:
 jobs:
   Bookstore-app-build:
     runs-on: ubuntu-latest
