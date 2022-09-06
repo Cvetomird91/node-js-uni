@@ -10,6 +10,7 @@ on:
       - 'queries.graphql'
       - 'db-schema/**'
       - '.github/**'
+      - '.gitignore'
   workflow_dispatch:
 jobs:
   Bookstore-service-build:
