@@ -4,6 +4,8 @@ data "aws_availability_zones" "available" {
 
 resource "aws_vpc" "main" {
   cidr_block = "172.17.0.0/16"
+  enable_dns_support   = "true"
+  enable_dns_hostnames = "true"
 
   tags = {
     Name =  "${var.ecs_service_name}-VPC"
@@ -21,7 +23,6 @@ resource "aws_subnet" "private" {
   }
 }
 
-# Create var.az_count public subnets, each in a different AZ
 resource "aws_subnet" "public" {
   count                   = var.az_count
   cidr_block              = cidrsubnet(aws_vpc.main.cidr_block, 8, var.az_count + count.index)
@@ -50,22 +51,11 @@ resource "aws_route" "internet_access" {
 }
 
 resource "aws_eip" "gw" {
-  count      = var.az_count
   vpc        = true
   depends_on = [aws_internet_gateway.igw]
 
   tags = {
     Name =  "${var.ecs_service_name}-EIP"
-  }
-}
-
-resource "aws_nat_gateway" "gw" {
-  count         = var.az_count
-  subnet_id     = element(aws_subnet.public.*.id, count.index)
-  allocation_id = element(aws_eip.gw.*.id, count.index)
-
-  tags = {
-    Name =  "${var.ecs_service_name}-NAT"
   }
 }
 
@@ -75,7 +65,7 @@ resource "aws_route_table" "private" {
 
   route {
     cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = element(aws_nat_gateway.gw.*.id, count.index)
+    instance_id = aws_instance.NatInstance[count.index].id
   }
 
   tags = {
@@ -83,9 +73,78 @@ resource "aws_route_table" "private" {
   }
 }
 
+resource "aws_route_table" "public" {
+  count  = var.az_count
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "${var.ecs_service_name}-rt-public-${count.index}"
+  }
+}
+
+
 # Explicitly associate the newly created route tables to the private subnets (so they don't default to the main route table)
 resource "aws_route_table_association" "private" {
   count          = var.az_count
   subnet_id      = element(aws_subnet.private.*.id, count.index)
   route_table_id = element(aws_route_table.private.*.id, count.index)
+}
+
+resource "aws_route_table_association" "public" {
+  count          = var.az_count
+  subnet_id      = element(aws_subnet.public.*.id, count.index)
+  route_table_id = element(aws_route_table.public.*.id, count.index)
+}
+
+resource "aws_instance" "NatInstance" {
+  count          = var.az_count
+  ami                         = data.aws_ami.al2_ami.id
+  instance_type               = "t2.micro"
+  subnet_id                   = element(aws_subnet.public.*.id, count.index)
+  associate_public_ip_address = "true"
+  source_dest_check           = "false"
+  vpc_security_group_ids      = [aws_security_group.nat_instance_sg.id]
+  user_data                   = <<EOF
+#!/bin/bash
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo /sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo service sshd stop
+sudo systemctl stop rpcbind
+  EOF
+
+  tags = {
+    Name = "NatInstance"
+  }
+}
+
+resource "aws_security_group" "nat_instance_sg" {
+  name        = "nat_instance_sg"
+  description = "Allow TLS inbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    Name = "NatInstanceSG"
+  }
+}
+
+output "vpc_id" {
+  value = aws_vpc.main.id
 }
