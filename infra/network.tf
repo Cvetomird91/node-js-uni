@@ -101,27 +101,6 @@ resource "aws_route_table_association" "public" {
   route_table_id = element(aws_route_table.public.*.id, count.index)
 }
 
-resource "aws_instance" "NatInstance" {
-  count          = var.az_count
-  ami                         = data.aws_ami.al2_ami.id
-  instance_type               = "t2.micro"
-  subnet_id                   = element(aws_subnet.public.*.id, count.index)
-  associate_public_ip_address = "true"
-  source_dest_check           = "false"
-  vpc_security_group_ids      = [aws_security_group.nat_instance_sg.id]
-  user_data                   = <<EOF
-#!/bin/bash
-sudo sysctl -w net.ipv4.ip_forward=1
-sudo /sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-sudo service sshd stop
-sudo systemctl stop rpcbind
-  EOF
-
-  tags = {
-    Name = "NatInstance"
-  }
-}
-
 resource "aws_security_group" "nat_instance_sg" {
   name        = "nat_instance_sg"
   description = "Allow TLS inbound traffic"
