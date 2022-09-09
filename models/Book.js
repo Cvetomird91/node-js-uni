@@ -2,14 +2,21 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const BookSchema = new Schema ({
-    title: String,
+    title: {
+        type: String,
+        required: true
+    },
     ISBN: {
         unique: true,
         type: String,
+        required: true
     },
     date: Date,
     cover: String,
-    author: String,
+    author: {
+        type: String,
+        required: true
+    },
     copies: [{
         type: Schema.Types.ObjectId,
         ref: 'BookCopy' 

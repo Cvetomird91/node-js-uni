@@ -5,6 +5,7 @@ const BookCopySchema = new Schema ({
     bookId: {
         type: Schema.Types.ObjectId,
         ref: 'Book',
+        required: true
     },
     status: Number,
 });

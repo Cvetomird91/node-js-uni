@@ -7,3 +7,4 @@ queries.graphql
 README.md
 db-schema
 .gitignore
+coverage
