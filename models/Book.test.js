@@ -28,7 +28,7 @@ describe('Book user model', () => {
 
     });
 
-    it('should throw an exception when ISBN is missing', () => {
+    it('should throw an exception when required fields are missing', () => {
         const _doc = {
             _id: '60999f1948d0c310bb55f40c',
             date: '1831-03-16T00:00:00.000Z',
