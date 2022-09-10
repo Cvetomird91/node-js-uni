@@ -1,5 +1,4 @@
 import * as mockingoose from 'mockingoose'
-import Book from "./Book.js";
 import Borrow from "./Borrow.js";
 import {describe, expect, test} from '@jest/globals';
 
@@ -35,7 +34,6 @@ describe('Borrow model', () => {
         mockingoose(Borrow).toReturn(_doc, 'findOne');
 
         return Borrow.findById({ _id: '60999f1948d0c310bb55f40c' }).then(doc => {
-          console.log(doc);
           expect(JSON.parse(JSON.stringify(doc))).toMatchObject(_doc);
         });
 
