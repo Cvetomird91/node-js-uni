@@ -2,7 +2,7 @@ import * as mockingoose from 'mockingoose'
 import Book from "./Book.js";
 import {describe, expect, test} from '@jest/globals';
 
-describe('Book user model', () => {
+describe('Book model', () => {
 
     beforeEach(() => {
       jest.useFakeTimers();

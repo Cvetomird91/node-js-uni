@@ -2,7 +2,7 @@ import * as mockingoose from 'mockingoose'
 import Reader from "./Reader.js";
 import {describe, expect, test} from '@jest/globals';
 
-describe('Reader user model', () => {
+describe('Reader model', () => {
 
     beforeEach(() => {
       jest.useFakeTimers();

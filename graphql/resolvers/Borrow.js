@@ -25,8 +25,6 @@ export default {
                 throw(context.error);
             }
 
-            //to do: add mutation to mark a book as returned
-
             //check if the book copy is already borrowed
             const bookBorrow = await Borrow.find({bookCopy: args.data.bookCopyId});
             const reader = await Reader.findById(args.data.readerId);

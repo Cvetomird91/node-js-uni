@@ -4,15 +4,18 @@ const { Schema } = mongoose;
 const BorrowSchema = new Schema ({
     bookCopy: {
         type: Schema.Types.ObjectId,
-        ref: 'BookCopy' 
+        ref: 'BookCopy',
+        required: true
     },
+    //todo: check if we can remove this relation safely and make sure it's redudant
     book: {
         type: Schema.Types.ObjectId,
-        ref: 'Book' 
+        ref: 'Book'
     },
     readerId: {
         type: Schema.Types.ObjectId,
-        ref: 'Reader' 
+        ref: 'Reader',
+        required: true
     },
     dateFrom: Date,
     dateTo: Date,
