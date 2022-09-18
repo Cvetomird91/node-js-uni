@@ -6,7 +6,7 @@ resource "aws_ecs_task_definition" "bookstore" {
   family                   = "${var.ecs_service_name}-bookstore-task"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   network_mode             = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
+  requires_compatibilities = ["EC2"]
   cpu                      = var.bookstore_service_fargate_cpu + var.bookstore_app_fargate_cpu
   memory                   = var.bookstore_service_fargate_memory + var.bookstore_app_fargate_memory
   container_definitions    = jsonencode(
@@ -46,12 +46,12 @@ resource "aws_ecs_service" "bookstore" {
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.bookstore.arn
   desired_count   = var.bookstore_app_count
-  launch_type     = "FARGATE"
+  launch_type     = "EC2"
 
   network_configuration {
     security_groups  = [aws_security_group.bookstore_app_task.id, aws_security_group.bookstore_service_task.id]
     subnets          = aws_subnet.private.*.id
-    assign_public_ip = true
+    assign_public_ip = false
   }
 
   load_balancer {

@@ -71,3 +71,7 @@ resource "aws_alb_listener_rule" "graphql" {
   }
 
 }
+
+output "load_balancer_ip" {
+  value = aws_alb.main.dns_name
+}

@@ -61,3 +61,13 @@ variable "bookstore_app_count" {
   description = "Number of app containers to run"
   default     = 2
 }
+
+variable "instance_type_spot" {
+  default = "t3a.medium"
+  type    = string
+}
+
+variable "spot_bid_price" {
+  default     = "0.0175"
+  description = "How much you are willing to pay as an hourly rate for an EC2 instance, in USD"
+}
