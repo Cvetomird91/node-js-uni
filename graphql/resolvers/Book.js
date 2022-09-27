@@ -1,5 +1,4 @@
-import pkg from "graphql-iso-date";
-const { GraphQLDateTime } = pkg;
+import * as GraphQLDateTime from 'graphql-iso-date';
 import Book from "../../models/Book.js";
 import BookCopy from "../../models/BookCopy.js";
 
