@@ -2,6 +2,7 @@ import { describe, expect, test } from '@jest/globals';
 import { ApolloServer, gql } from 'apollo-server';
 import * as mockingoose from 'mockingoose';
 import Book from "../../models/Book.js";
+import BookCopy from "../../models/BookCopy.js";
 import bookResolver from "./Book.js";
 import bookType from "../types/Book.js";
 
@@ -79,7 +80,7 @@ describe('Book resolver', () => {
                                               author: 'Victor Hugo 2', numberOfCopies: 1})
     });
 
-    it('add title mutation', async () => {
+    it('addTitle mutation', async () => {
       const book = {
           _id: '60999f1948d0c310bb55f40c',
           title: 'The Hunchback of Notre-Dame',
@@ -99,6 +100,45 @@ describe('Book resolver', () => {
                                                ISBN: '9780517123751', date: new Date('1831-03-16T00:00:00.000Z'),
                                                cover: 'https://images-na.ssl-images-amazon.com/images/I/41CB164PM5L._SX325_BO1,204,203,200_.jpg',
                                                author: 'Victor Hugo'})
+
+    });
+
+    it('addBookCopy mutation', async () => {
+        Book.schema.path('copies', Object);
+
+        const book = [{
+            _id: '60999f1948d0c310bb55f40c',
+            title: 'The Hunchback of Notre-Dame',
+            ISBN: '9780517123751',
+            date: '1831-03-16T00:00:00.000Z',
+            cover: 'https://images-na.ssl-images-amazon.com/images/I/41CB164PM5L._SX325_BO1,204,203,200_.jpg',
+            author: 'Victor Hugo',
+            copies: [{
+                         _id: '609ad4b118789450a9b5ff9b',
+                         bookId: '60999f1948d0c310bb55f40c',
+                         status: 1
+                    }]
+        }];
+
+        const bookCopies = [{
+             _id: '609ad4b118789450a9b5ff9b',
+             bookId: '60999f1948d0c310bb55f40c',
+             status: 1
+        },
+        {
+             _id: '609ad6d418789450a9b5ff9d',
+             bookId: '60999f1948d0c310bb55f40c',
+             status: 1
+        }];
+
+        mockingoose(Book).toReturn(book, 'find');
+        mockingoose(BookCopy).toReturn(bookCopies, 'find');
+
+        const result = await testServer.executeOperation({
+          query: 'mutation { addBookCopy(ISBN: "978-0451524935") { _id title numberOfCopies } }'
+        });
+
+        expect(result.data.addBookCopy).toMatchObject({title: "The Hunchback of Notre-Dame", numberOfCopies: 2})
 
     });
 
