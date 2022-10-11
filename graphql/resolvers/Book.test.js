@@ -142,4 +142,49 @@ describe('Book resolver', () => {
 
     });
 
+    it('editBook mutation', async () => {
+
+        const book = {
+            _id: '609e620a51303b6c6d386794',
+            title: 'A Descent into the Maelström',
+            ISBN: '9781545304280',
+            date: '1919-01-01',
+            cover: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Maelstrom-Clarke.jpg',
+            author: 'Edgar Alan Poe',
+            copies: [{
+                         _id: '609ad4b118789450a9b5ff9b',
+                         bookId: '60999f1948d0c310bb55f40c',
+                         status: 1
+                    }]
+        };
+
+        Book.findByIdAndUpdate = jest.fn(() => {return book});
+
+        const result = await testServer.executeOperation({
+          query: `mutation {
+                       editBook (_id:"609e620a51303b6c6d386794", data:{
+                         author: "Edgar Alan Poe",
+                         title: "A Descent into the Maelström",
+                         ISBN:"9781545304280",
+                         date:"1919-01-01",
+                         cover:"https://upload.wikimedia.org/wikipedia/commons/4/45/Maelstrom-Clarke.jpg"
+                       }){
+                         _id
+                         author
+                         title
+                         ISBN
+                         date
+                         cover
+                       }
+                     }`
+        });
+
+        expect(result.data.editBook).toMatchObject({author: "Edgar Alan Poe",
+                    title: "A Descent into the Maelström",
+                    ISBN: "9781545304280",
+                    date: "1919-01-01",
+                    cover: "https://upload.wikimedia.org/wikipedia/commons/4/45/Maelstrom-Clarke.jpg"})
+
+    });
+
 });
