@@ -1,5 +1,5 @@
-import { describe, expect, test } from '@jest/globals';
-import { ApolloServer, gql } from 'apollo-server';
+import { describe, expect } from '@jest/globals';
+import { ApolloServer } from 'apollo-server';
 import * as mockingoose from 'mockingoose';
 import Book from "../../models/Book.js";
 import BookCopy from "../../models/BookCopy.js";
@@ -56,7 +56,7 @@ describe('Book resolver', () => {
     it('get a specific book', async() => {
         Book.schema.path('copies', Object);
 
-        const books = [{
+        const book = {
             _id: '60999f1948d0c310bb55f40c',
             title: 'The Hunchback of Notre-Dame',
             ISBN: '9780517123751',
@@ -68,9 +68,9 @@ describe('Book resolver', () => {
                          bookId: '60999f1948d0c310bb55f40c',
                          status: 1
                     }]
-        }];
+        };
 
-      mockingoose(Book).toReturn(books[0], 'findOne');
+      mockingoose(Book).toReturn(book, 'findOne');
       const result = await testServer.executeOperation({
         query: 'query { book(_id: "60999f1948d0c310bb55f40c") { _id title ISBN date cover author numberOfCopies } }'
       });
