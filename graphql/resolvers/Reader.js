@@ -27,10 +27,7 @@ export default {
             }
 
             const reader = await Reader.findByIdAndUpdate(_id,
-                {$set: data},
-                {
-                    new: true
-                });
+                {$set: data}, {new: true});
             return reader;
         },
         deleteReader: async (root, {_id}, context) => {
