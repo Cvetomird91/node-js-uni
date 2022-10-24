@@ -7,7 +7,6 @@ const BorrowSchema = new Schema ({
         ref: 'BookCopy',
         required: true
     },
-    //todo: check if we can remove this relation safely and make sure it's redudant
     book: {
         type: Schema.Types.ObjectId,
         ref: 'Book'
