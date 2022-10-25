@@ -113,25 +113,22 @@ describe('Borrow resolver', () => {
            status: 1
        }];
 
+       const book = {
+           _id: "6099af74ca928252960fe17b",
+           title: "Under the Yoke",
+           ISBN: "978-0543691781",
+           date: "1890-01-01T00:00:00.000Z",
+           cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1368097546l/2445777.jpg",
+           author: "Ivan Vazov"
+       };
+
        const bookCopy = {
            _id: "609ad6e718789450a9b5ffa5",
-           bookId: {
-               _id: "6099af74ca928252960fe17b",
-               title: "Under the Yoke",
-               ISBN: "978-0543691781",
-               date: "1890-01-01T00:00:00.000Z",
-               cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1368097546l/2445777.jpg",
-               author: "Ivan Vazov"
-           },
-           populate: jest.fn(() => {return bookCopy}),
+           bookId: book,
            status: 1
        };
 
-//        Borrow.find = jest.fn(() => {return borrows});
-//        Reader.findById = jest.fn(() => {return reader});
-//        BookCopy.findById = jest.fn(() => {return bookCopy});
-
-       mockingoose(Borrow).toReturn(borrow, 'find');
+       mockingoose(Borrow).toReturn(borrows, 'find');
        mockingoose(Reader).toReturn(reader, 'findOne');
        mockingoose(BookCopy).toReturn(bookCopy, 'findOne');
 
