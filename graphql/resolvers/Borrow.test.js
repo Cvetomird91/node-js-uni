@@ -281,11 +281,81 @@ describe('Borrow resolver', () => {
                      dateTo
                    }
                  }`
-                                                         });
+        });
 
         expect(result.errors[0].message)
             .toEqual("The reader id is not valid! reader id: 609aeed1a4a0d6192e5e8e1b");
 
+    });
+
+    it('borrow book', async () => {
+        BookCopy.schema.path( 'bookId', Object);
+
+        const reader = {
+            _id: "609aeed1a4a0d6192e5e8e1b",
+            firstName: "Tsvetomir",
+            lastName: "Denchev",
+            status: 1
+        };
+
+        const borrow = {
+            bookCopy: "609ad74818789450a9b5ffb7",
+            readerId: "609aeed1a4a0d6192e5e8e1b",
+            dateFrom: new Date("12-05-2021"),
+            dateTo: new Date("12-06-2021"),
+            status: 1
+        };
+
+        const book = {
+            _id: "6099af74ca928252960fe17b",
+            title: "Under the Yoke",
+            ISBN: "978-0543691781",
+            date: "1890-01-01T00:00:00.000Z",
+            cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1368097546l/2445777.jpg",
+            author: "Ivan Vazov"
+        };
+
+        const bookCopy = {
+            _id: "609ad74818789450a9b5ffb7",
+            bookId: book,
+            status: 1
+        };
+
+        mockingoose(Borrow).toReturn([], 'find');
+        mockingoose(Borrow).toReturn(borrow, 'save');
+        mockingoose(Reader).toReturn(reader, 'findOne');
+        mockingoose(BookCopy).toReturn(bookCopy, 'findOne');
+
+        const result = await testServer.executeOperation({
+                 query: `mutation {
+                   borrowBook(data: {
+                     bookCopyId:"609ad74818789450a9b5ffb7",
+                     readerId:"609aeed1a4a0d6192e5e8e1b",
+                     dateFrom: "12-05-2021",
+                     dateTo: "12-06-2021"
+                   }) {
+                     book {
+                       _id
+                       author
+                       cover
+                       date
+                       title
+                       ISBN
+                     }
+                     reader {
+                       _id
+                       firstName
+                       lastName
+                       status
+                     }
+                     dateFrom
+                     dateTo
+                   }
+                 }`
+        });
+
+        expect(result.data.borrowBook.reader).toMatchObject(reader);
+        expect(result.data.borrowBook.book).toMatchObject(bookCopy.bookId);
     });
 
 });
