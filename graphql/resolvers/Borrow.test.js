@@ -358,4 +358,78 @@ describe('Borrow resolver', () => {
         expect(result.data.borrowBook.book).toMatchObject(bookCopy.bookId);
     });
 
+    it('return book copy', async () => {
+        BookCopy.schema.path( 'bookId', Object);
+
+        const book = {
+            _id: "6099af74ca928252960fe17b",
+            title: "Under the Yoke",
+            ISBN: "978-0543691781",
+            date: "1890-01-01T00:00:00.000Z",
+            cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1368097546l/2445777.jpg",
+            author: "Ivan Vazov"
+        };
+
+        const bookCopy = {
+            _id: "609ad74818789450a9b5ffb7",
+            bookId: book,
+            status: 0
+        };
+
+        const bookCopyReturned = {
+            _id: "609ad74818789450a9b5ffb7",
+            bookId: book,
+            status: 1
+        };
+
+        const reader = {
+            _id: "609aee966fbcdd17db4d3d9a",
+            firstName: "Tsvetomir",
+            lastName: "Denchev",
+            status: 1
+        };
+
+        const borrows = [{
+            _id: "609b8874f8f1f741248a68ab",
+            bookCopy: "609ad74818789450a9b5ffb7",
+            readerId: reader,
+            dateFrom: "2021-12-04T22:00:00.000Z",
+            dateTo: "2021-12-05T22:00:00.000Z",
+            status: 1
+        }];
+
+        mockingoose(BookCopy).toReturn(bookCopy, 'findOne');
+        mockingoose(BookCopy).toReturn(bookCopyReturned, 'save');
+        mockingoose(Borrow).toReturn(borrows, 'find');
+        mockingoose(Reader).toReturn(reader, 'findOne');
+
+        const result = await testServer.executeOperation({
+            query: `mutation {
+                      returnBook(bookCopyId:"609ad74818789450a9b5ffb7"){
+                       _id
+                       book {
+                          _id
+                          title
+                          ISBN
+                          date
+                          cover
+                          author
+                        }
+                        reader {
+                          _id
+                          firstName
+                          lastName
+                          status
+                        }
+                        dateFrom
+                        dateTo
+                      }
+                    }`
+        });
+
+        expect(result.data.returnBook.reader).toMatchObject(reader);
+        expect(result.data.returnBook.book).toMatchObject(book);
+
+    });
+
 });
