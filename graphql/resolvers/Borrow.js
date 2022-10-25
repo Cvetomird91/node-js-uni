@@ -29,16 +29,16 @@ export default {
             const bookBorrow = await Borrow.find({bookCopy: args.data.bookCopyId});
             const reader = await Reader.findById(args.data.readerId);
 
+            if (reader == null) {
+                throw new UserInputError(`The reader id is not valid! reader id: ${args.data.readerId}`);
+            }
+
             if (reader.status == 0) {
                 throw new UserInputError(`The reader is not active! reader id: ${args.data.readerId}`);
             }
 
             if (bookBorrow.length != 0) {
                 throw new UserInputError(`The book copy is already borrowed! book copy ${args.data.bookCopyId}`);
-            }
-
-            if (reader == null) {
-                throw new UserInputError(`The reader id is not valid! reader id: ${args.data.readerId}`);
             }
 
             const dateFrom = new Date(args.data.dateFrom);

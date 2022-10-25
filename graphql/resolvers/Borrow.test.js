@@ -252,4 +252,40 @@ describe('Borrow resolver', () => {
 
    });
 
+    it('attempt to borrow book by missing reader', async () => {
+
+        const reader = null;
+
+        mockingoose(Borrow).toReturn([], 'find');
+        mockingoose(Reader).toReturn(reader, 'findOne');
+
+        const result = await testServer.executeOperation({
+                                                             query: `mutation {
+                   borrowBook(data: {
+                     bookCopyId:"609ad74818789450a9b5ffb7",
+                     readerId:"609aeed1a4a0d6192e5e8e1b",
+                     dateFrom: "12-05-2021",
+                     dateTo: "12-06-2021"
+                   }) {
+                     book {
+                       _id
+                       title
+                       ISBN
+                     }
+                     reader {
+                       _id
+                       firstName
+                       lastName
+                     }
+                     dateFrom
+                     dateTo
+                   }
+                 }`
+                                                         });
+
+        expect(result.errors[0].message)
+            .toEqual("The reader id is not valid! reader id: 609aeed1a4a0d6192e5e8e1b");
+
+    });
+
 });
