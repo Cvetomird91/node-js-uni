@@ -14,8 +14,6 @@ describe('Borrow model', () => {
         const _doc = {
             _id: '609e818d6da43f19180f4265',
             readerId: '609aee8a6fbcdd17db4d3d99',
-            //todo: make sure if this field is needed at all (probably not)
-            book: '60999f1948d0c310bb55f40c',
             bookCopy: {
                 _id: "609ad74218789450a9b5ffb5",
                 bookId: '60999f1948d0c310bb55f40c',
