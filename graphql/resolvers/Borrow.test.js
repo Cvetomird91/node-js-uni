@@ -407,6 +407,7 @@ describe('Borrow resolver', () => {
             query: `mutation {
                       returnBook(bookCopyId:"609ad74818789450a9b5ffb7"){
                        _id
+                       status
                        book {
                           _id
                           title
@@ -429,6 +430,7 @@ describe('Borrow resolver', () => {
 
         expect(result.data.returnBook.reader).toMatchObject(reader);
         expect(result.data.returnBook.book).toMatchObject(book);
+        expect(result.data.returnBook.status).toEqual(0);
 
     });
 

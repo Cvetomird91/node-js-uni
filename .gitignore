@@ -7,3 +7,4 @@ package-lock.json
 nodejs-graphql-pu.iml
 .terraform.lock.hcl
 coverage
+.vscode
