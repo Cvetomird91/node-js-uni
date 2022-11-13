@@ -6,7 +6,7 @@ The MongoDB schema and sample data can be found in `db-schema` in the mongoexpor
 
 # Infrastructure
 
-The project uses `Terraform` to describe and make changes to AWS infrastructure. AWS technologies used:
+The project uses `Terraform` to describe and make changes to AWS infrastructure. The configuration files are stored in the `infra/` directory. AWS technologies used:
 
 - Elastic container registrey
 - Elastic container service running on EC2 on t3a.medium instances
