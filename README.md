@@ -13,3 +13,4 @@ The project uses `Terraform` to describe and make changes to AWS infrastructure.
 - Application load balancer with various target groups
 - AWS Cloudwatch
 - Public and private subnets with EC2 NAT instances 
+- Github Actions CI/CD with AWS integration
