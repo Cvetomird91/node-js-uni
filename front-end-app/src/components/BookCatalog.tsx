@@ -2,9 +2,7 @@ import { Container } from './Container';
 import { Title } from './Title';
 import { Navbar } from "./Navbar";
 import { BookCatalogMenu } from './BookCatalogMenu';
-import { useState } from 'react';
-import { BooksList } from './BooksList';
-import BookCard from './BookCard';
+import BooksList from './BooksList';
 
 export function BookCatalog () {
   return (
@@ -12,9 +10,7 @@ export function BookCatalog () {
       <Title/>
       <Navbar/>
       <BookCatalogMenu/>
-      <div className="row">
-        <BooksList/>
-      </div>
+      <BooksList/>
     </Container>
   )
 }
