@@ -1,12 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Container }from './components/Container';
-import { Title }from './components/Title';
+import { BookCatalog }from './components/BookCatalog';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <Container/>
+      <div>
+        <Router>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <BookCatalog/>
+            }>
+            </Route>
+            <Route
+              path='/readers'>
+
+            </Route>
+            <Route
+              path='/borrows'>
+
+            </Route>
+          </Routes>
+        </Router>
+      </div>
   );
 }
 

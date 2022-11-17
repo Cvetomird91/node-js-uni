@@ -1,12 +1,13 @@
 import React from 'react'
-import { Title } from './Title'
-import { Navbar } from './Navbar'
 
-export function Container () {
+type ContainerProps = {
+    children: React.ReactNode;
+};
+
+export function Container (props: ContainerProps) {
   return (
     <div className="container">
-        <Title/>
-        <Navbar/>
+        {props.children}
     </div>
   )
 }
