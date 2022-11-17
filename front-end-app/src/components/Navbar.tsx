@@ -4,13 +4,13 @@ export function Navbar() {
             <div className="collapse navbar-collapse" id="navbarText">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <a className="nav-link active" href="/">Book catalog</a>
+                        <a className={`nav-link ${window.location.pathname === '/' ? "active" : ""}`} href="/">Book catalog</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/readers">Readers</a>
+                        <a className={`nav-link ${window.location.pathname === '/readers' ? "active" : ""}`} href="/readers">Readers</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/borrows">Borrows</a>
+                        <a className={`nav-link ${window.location.pathname === '/borrows' ? "active" : ""}`} href="/borrows">Borrows</a>
                     </li>
 
                 </ul>
