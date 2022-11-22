@@ -1,35 +1,35 @@
+import React from 'react';
 import './App.css';
-import { BookCatalog }from './components/BookCatalog';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { ReadersDiretory } from './components/ReadersDirectory';
-import { BorrowsManager } from './components/BorrowsManager';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from 'react-router-dom';
+import BooksPage from './components/BooksPage';
+
 
 function App() {
   return (
-      <div>
-        <Router>
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <BookCatalog/>
-            }>
-            </Route>
-            <Route
-              path='/readers'
-              element={
-                <ReadersDiretory/>
-            }>
-            </Route>
-            <Route
-              path='/borrows'
-              element={
-                <BorrowsManager/>
-              }>
-            </Route>
-          </Routes>
-        </Router>
+    <Router>
+      <header className='sticky'>
+      <NavLink to="/" className="button rounded">
+        <span className="icon-home"></span>
+        Books
+      </NavLink>
+      <NavLink to="/readers/" className="button rounded">
+        Readers
+      </NavLink>
+      <NavLink to="/borrows/" className="button rounded">
+        Borrows
+      </NavLink>
+      </header>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<BooksPage />} />
+        </Routes>
       </div>
+    </Router>
   );
 }
 

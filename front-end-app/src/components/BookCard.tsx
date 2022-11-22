@@ -1,23 +1,38 @@
-import { Book } from '../types/Book';
+import Book from '../types/Book';
+import BookCardProps from '../types/BookCardProps';
 
-export function BookCard({image, title, date, author, isbn, description }: Book) {
+
+function BookCard(props: BookCardProps) {
+  const { book, onEdit } = props;
+
+  const handleEditClick = (bookBeingEdited: Book) => {
+    onEdit(bookBeingEdited);
+  }
+
   return (
-    <div className="card book-card">
-      <img className="card-img-top vertical-style-image"
-        alt="Card image cap" src={image}/>
-        <div className="card-body">
-            <div className="text-center book-edit-modal-button-holder">
-                <button type="button" className="btn btn-primary text-center" data-toggle="modal" data-target="#book-edit-modal-1">Edit</button>
-            </div>
-            <h5 className="card-title vertical-style-title">{title}</h5>
-            <p className="card-text vertical-style-date">{date}</p>
-            <p className="card-text">{author}</p>
-            <p className="card-text isbn">{isbn}</p>
-            <br/>
-            <p className="card-text vertical-style-description">{description}</p>
+    <div className="card">
+      <img src={book.image} alt={book.title} />
+      <section className="section dark">
+        <h5 className="strong">
+        <strong>{book.title}</strong>
+        </h5>
+        <div><i>{book.author}</i></div>
+        <div><i>{book.isbn}</i></div>
+        <div><i>{book.description}</i></div>
+        <div><i>{book.date}</i></div>
+        <div>
+          <button
+            className=" bordered" onClick={() => {
+              handleEditClick(book);
+            }}
+          >
+            <span className="icon-edit "></span>
+            Edit
+          </button>
         </div>
+      </section>
     </div>
   )
 }
-
-export default BookCard
+  
+export default BookCard;
