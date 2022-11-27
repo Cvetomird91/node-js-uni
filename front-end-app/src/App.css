@@ -48,3 +48,7 @@
   height:150px;
   object-fit: cover;
 }
+
+.book-form {
+  width: 310px;
+}

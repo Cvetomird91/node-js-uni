@@ -1,18 +1,18 @@
 export class Book {
-    image: string = '';
+    cover: string = '';
     title: string = '';
     date: string = '';
     author: string = '';
-    isbn: string = '';
+    ISBN: string = '';
     description?: string = '';
 
     constructor(initializer? : any) {
         if (!initializer) return;
-        if (initializer.image) this.image = initializer.image;
+        if (initializer.cover) this.cover = initializer.cover;
         if (initializer.title) this.title = initializer.title;
         if (initializer.date) this.date = initializer.date;
         if (initializer.author) this.author = initializer.author;
-        if (initializer.isbn) this.isbn = initializer.isbn;
+        if (initializer.ISBN) this.ISBN = initializer.ISBN;
         if (initializer.description) this.description = initializer.description;
     }
 }

@@ -16,17 +16,17 @@ function BookForm({  book: initialBook, onSave, onCancel }: BookFormProps) {
     }
 
     return (
-        <form className="input-group vertical" onSubmit={handleSubmit}>
+        <form className="input-group vertical book-form" onSubmit={handleSubmit}>
             <label htmlFor="title">Book Title</label>
             <input type="text" name="title" placeholder="enter title" value={book.title}/>
             <label htmlFor="description">Book Description</label>
             <input type="text" name="description" placeholder="enter description" value={book.description}/>
-            <label htmlFor="image">Image URL</label>
-            <input type="text" name="image" placeholder="enter image url" value={book.image}/>
+            <label htmlFor="cover">Cover Image URL</label>
+            <input type="text" name="cover" placeholder="enter cover url" value={book.cover}/>
             <label htmlFor="author">Author</label>
             <input type="text" name="author" placeholder="enter book author" value={book.author}/>
             <label htmlFor="isbn">ISBN</label>
-            <input type="text" name="isbn" placeholder="enter isbn" value={book.isbn}/>
+            <input type="text" name="isbn" placeholder="enter isbn" value={book.ISBN}/>
             <label htmlFor="date">Issue Date</label>
             <input type="date" name="date" value={book.date}/>
 

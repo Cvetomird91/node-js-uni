@@ -1,4 +1,3 @@
-
 import { Book } from './Book';
 
 interface BookCardProps {

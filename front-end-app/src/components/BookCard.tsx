@@ -11,13 +11,13 @@ function BookCard(props: BookCardProps) {
 
   return (
     <div className="card">
-      <img src={book.image} alt={book.title} />
+      <img src={book.cover} alt={book.title} />
       <section className="section dark">
         <h5 className="strong">
         <strong>{book.title}</strong>
         </h5>
         <div><i>{book.author}</i></div>
-        <div><i>{book.isbn}</i></div>
+        <div><i>{book.ISBN}</i></div>
         <div><i>{book.description}</i></div>
         <div><i>{book.date}</i></div>
         <div>
