@@ -13,7 +13,7 @@ const BookApi = {
                 'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjY2NTIzMjUsImV4cCI6MTY2NjczODcyNX0.FQwlF1rDeVD3U0eFHEiBi6JMk7rPtlgILBS-6sEP5r0'
             },
             body: JSON.stringify({
-                query: `query { books { title, ISBN, date, cover, author, numberOfCopies } }`
+                query: `query { books { _id, title, ISBN, date, cover, author, numberOfCopies } }`
             })
         })
         .then(checkStatus)
