@@ -19,8 +19,6 @@ function BookForm({  book: initialBook, onSave, onCancel }: BookFormProps) {
         <form className="input-group vertical book-form" onSubmit={handleSubmit}>
             <label htmlFor="title">Book Title</label>
             <input type="text" name="title" placeholder="enter title" value={book.title}/>
-            <label htmlFor="description">Book Description</label>
-            <input type="text" name="description" placeholder="enter description" value={book.description}/>
             <label htmlFor="cover">Cover Image URL</label>
             <input type="text" name="cover" placeholder="enter cover url" value={book.cover}/>
             <label htmlFor="author">Author</label>

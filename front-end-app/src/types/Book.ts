@@ -5,7 +5,6 @@ export class Book {
     date: string = '';
     author: string = '';
     ISBN: string = '';
-    description?: string = '';
 
     constructor(initializer? : any) {
         if (!initializer) return;
@@ -15,7 +14,6 @@ export class Book {
         if (initializer.date) this.date = initializer.date;
         if (initializer.author) this.author = initializer.author;
         if (initializer.ISBN) this.ISBN = initializer.ISBN;
-        if (initializer.description) this.description = initializer.description;
     }
 }
 

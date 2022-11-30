@@ -25,6 +25,34 @@ const BookApi = {
             'There was an error retrieving the books. Please try again.'
             );
         });
+    },
+    editBook(book: Book) {
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                //todo: store token in local storage after login
+                'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjY2NTIzMjUsImV4cCI6MTY2NjczODcyNX0.FQwlF1rDeVD3U0eFHEiBi6JMk7rPtlgILBS-6sEP5r0'
+            },
+            body: JSON.stringify({
+                query: `mutation {
+                          editBook (_id: ${book._id}, data:{
+                            author: "${book.author}",
+                            title: "${book.title}",
+                            ISBN: "${book.ISBN}",
+                            date: "${book.date}",
+                            cover: "${book.cover}"
+                          }){
+                            _id
+                            author
+                            title
+                            ISBN
+                            date
+                            cover
+                          }
+                        }`
+            })
+        })
     }
 };
 

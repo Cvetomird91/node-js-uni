@@ -31,10 +31,12 @@ interface UpdateBookRequest {
 
 interface UpdateBookSuccess {
     type: typeof UPDATE_BOOK_SUCCESS;
+    payload: Book;
 }
 
 interface UpdateBookFailre {
     type: typeof UPDATE_BOOK_FAILURE;
+    payload: { message: string }
 }
 
 export type BookActionTypes = | LoadBooksRequest | LoadBooksSuccess | LoadBooksFailure

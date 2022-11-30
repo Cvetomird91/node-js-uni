@@ -18,7 +18,6 @@ function BookCard(props: BookCardProps) {
         </h5>
         <div><i>{book.author}</i></div>
         <div><i>{book.ISBN}</i></div>
-        <div><i>{book.description}</i></div>
         <div><i>{book.date}</i></div>
         <div>
           <button
