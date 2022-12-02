@@ -26,6 +26,34 @@ const BookApi = {
             );
         });
     },
+    getBook(bookId: any) {
+      return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            //todo: store token in local storage after login
+            'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2Njk5OTEyOTksImV4cCI6MTY3MDA3NzY5OX0.zyotP8yTWmv6m6q3WOZECoFaLaJgEUt2i8k5kkwVOkw'
+        },
+        body: JSON.stringify({
+            query: `query { book(_id: "${bookId}") { _id title ISBN date cover author numberOfCopies } }`
+        })
+      })
+      .then(checkStatus)
+      .then(parseJSON)
+      .then((data) => {
+        if (!data.errors) {
+          return new Book(data.data.book);
+        } else {
+          throw new Error(data.errors);
+        }
+      })
+      .catch((error: TypeError) => {
+        console.log('log client error ' + error);
+        throw new Error(
+          'There was an error retrieving the book. Please try again.'
+        );
+    });
+    },
     editBook(book: Book) {
         return fetch(url, {
             method: 'POST',

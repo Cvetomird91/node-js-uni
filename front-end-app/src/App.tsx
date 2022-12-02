@@ -7,6 +7,7 @@ import {
   NavLink,
 } from 'react-router-dom';
 import BooksPage from './components/BooksPage';
+import BookPage from './components/BookPage';
 import { store } from './state';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<BooksPage />} />
+            <Route path="/books/:id" element={<BookPage />} />
           </Routes>
         </div>
       </Router>
