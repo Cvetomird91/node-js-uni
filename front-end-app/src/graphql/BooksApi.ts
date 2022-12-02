@@ -10,7 +10,7 @@ const BookApi = {
             headers: {
                 'Content-Type': 'application/json',
                 //todo: store token in local storage after login
-                'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjY2NTIzMjUsImV4cCI6MTY2NjczODcyNX0.FQwlF1rDeVD3U0eFHEiBi6JMk7rPtlgILBS-6sEP5r0'
+                'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2Njk5OTEyOTksImV4cCI6MTY3MDA3NzY5OX0.zyotP8yTWmv6m6q3WOZECoFaLaJgEUt2i8k5kkwVOkw'
             },
             body: JSON.stringify({
                 query: `query { books { _id, title, ISBN, date, cover, author, numberOfCopies } }`
@@ -22,7 +22,7 @@ const BookApi = {
         .catch((error: TypeError) => {
             console.log('log client error ' + error);
             throw new Error(
-            'There was an error retrieving the books. Please try again.'
+              'There was an error retrieving the books. Please try again.'
             );
         });
     },
@@ -32,11 +32,11 @@ const BookApi = {
             headers: {
                 'Content-Type': 'application/json',
                 //todo: store token in local storage after login
-                'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjY2NTIzMjUsImV4cCI6MTY2NjczODcyNX0.FQwlF1rDeVD3U0eFHEiBi6JMk7rPtlgILBS-6sEP5r0'
+                'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2Njk5OTEyOTksImV4cCI6MTY3MDA3NzY5OX0.zyotP8yTWmv6m6q3WOZECoFaLaJgEUt2i8k5kkwVOkw'
             },
             body: JSON.stringify({
                 query: `mutation {
-                          editBook (_id: ${book._id}, data:{
+                          editBook (_id: "${book._id}", data:{
                             author: "${book.author}",
                             title: "${book.title}",
                             ISBN: "${book.ISBN}",
@@ -53,6 +53,22 @@ const BookApi = {
                         }`
             })
         })
+        .then(checkStatus)
+        .then(parseJSON)
+        .then((data) => {
+          if (!data.errors) {
+            return new Book(data.data.editBook);
+          } else {
+            throw new Error(data.errors);
+          }
+        })
+        .catch((error: TypeError) => {
+          console.log('log client error ' + error);
+          throw new Error(
+          'There was an error updating a book. Please try again.'
+          );
+        });
+
     }
 };
 
