@@ -32,7 +32,7 @@ const BookApi = {
         headers: {
             'Content-Type': 'application/json',
             //todo: store token in local storage after login
-            'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2Njk5OTEyOTksImV4cCI6MTY3MDA3NzY5OX0.zyotP8yTWmv6m6q3WOZECoFaLaJgEUt2i8k5kkwVOkw'
+            'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzAxNzA1OTEsImV4cCI6MTY3MDI1Njk5MX0.0nsFnBhQFIgVmCGBncaO7lgjWITdh5VNFP0DTITsv_8'
         },
         body: JSON.stringify({
             query: `query { book(_id: "${bookId}") { _id title ISBN date cover author numberOfCopies } }`
@@ -60,7 +60,7 @@ const BookApi = {
             headers: {
                 'Content-Type': 'application/json',
                 //todo: store token in local storage after login
-                'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2Njk5OTEyOTksImV4cCI6MTY3MDA3NzY5OX0.zyotP8yTWmv6m6q3WOZECoFaLaJgEUt2i8k5kkwVOkw'
+                'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzAxNzA1OTEsImV4cCI6MTY3MDI1Njk5MX0.0nsFnBhQFIgVmCGBncaO7lgjWITdh5VNFP0DTITsv_8'
             },
             body: JSON.stringify({
                 query: `mutation {
@@ -97,6 +97,36 @@ const BookApi = {
           );
         });
 
+    },
+    addBookCopy(book: Book) {
+      console.log(book);
+      return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            //todo: store token in local storage after login
+            'Authentication': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzAxNzA1OTEsImV4cCI6MTY3MDI1Njk5MX0.0nsFnBhQFIgVmCGBncaO7lgjWITdh5VNFP0DTITsv_8'
+        },
+        body: JSON.stringify({
+            query: `mutation { addBookCopy(ISBN: "${book.ISBN}") { _id, title, ISBN, date, cover, author, numberOfCopies } }`
+        })
+      })
+      .then(checkStatus)
+      .then(parseJSON)
+      .then((data) => {
+        console.log(data);
+        if (!data.errors) {
+          return new Book(data.data.addBookCopy);
+        } else {
+          throw new Error(data.errors);
+        }
+      })
+      .catch((error: TypeError) => {
+        console.log('log client error ' + error);
+        throw new Error(
+        'There was an error updating a book. Please try again.'
+        );
+      });
     }
 };
 

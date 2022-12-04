@@ -6,7 +6,10 @@ import {
     BookState,
     UPDATE_BOOK_REQUEST,
     UPDATE_BOOK_FAILURE,
-    UPDATE_BOOK_SUCCESS
+    UPDATE_BOOK_SUCCESS,
+    ADD_COPY_REQUEST,
+    ADD_COPY_SUCCESS,
+    ADD_COPY_FAILURE
 } from './BookStateTypes';
 import { Book } from '../types/Book';
 
@@ -47,6 +50,19 @@ export function bookReducer(
             }
         case UPDATE_BOOK_FAILURE:
             return { ...state, error: action.payload.message };
+        case ADD_COPY_REQUEST:
+            return { ...state, loading: true, error: '' };
+        case ADD_COPY_SUCCESS:
+            return {
+                ...state,
+                books: state.books.map((book: Book) => {
+                    return book._id === action.payload._id ?
+                        Object.assign({}, book, action.payload)
+                        : book;
+                })
+            }
+        case ADD_COPY_FAILURE:
+            return { ...state, loading: true, error: '' };
         default:
             return state;
     }

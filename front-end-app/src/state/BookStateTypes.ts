@@ -9,6 +9,10 @@ export const UPDATE_BOOK_REQUEST = 'UPDATE_BOOK_REQUEST';
 export const UPDATE_BOOK_SUCCESS = 'UPDATE_BOOK_SUCCESS';
 export const UPDATE_BOOK_FAILURE = 'UPDATE_BOOK_FAILURE';
 
+export const ADD_COPY_REQUEST = 'ADD_COPY_REQUEST';
+export const ADD_COPY_SUCCESS = 'ADD_COPY_SUCCESS';
+export const ADD_COPY_FAILURE = 'ADD_COPY_FAILRE';
+
 interface LoadBooksRequest {
     type: typeof LOAD_BOOKS_REQUEST;
 }
@@ -39,8 +43,23 @@ interface UpdateBookFailre {
     payload: { message: string }
 }
 
+interface AddCopyRequest {
+    type: typeof ADD_COPY_REQUEST;
+}
+
+interface AddCopySuccess {
+    type: typeof ADD_COPY_SUCCESS;
+    payload: Book;
+}
+
+interface AddCopyFailure {
+    type: typeof ADD_COPY_FAILURE;
+    payload: { message: string }
+}
+
 export type BookActionTypes = | LoadBooksRequest | LoadBooksSuccess | LoadBooksFailure
-                              | UpdateBookRequest | UpdateBookSuccess | UpdateBookFailre;
+                              | UpdateBookRequest | UpdateBookSuccess | UpdateBookFailre
+                              | AddCopyRequest | AddCopySuccess | AddCopyFailure;
 
 export interface BookState {
     loading: boolean;

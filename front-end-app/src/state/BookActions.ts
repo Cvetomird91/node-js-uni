@@ -10,6 +10,9 @@ import {
     UPDATE_BOOK_REQUEST,
     UPDATE_BOOK_SUCCESS,
     UPDATE_BOOK_FAILURE,
+    ADD_COPY_REQUEST,
+    ADD_COPY_SUCCESS,
+    ADD_COPY_FAILURE,
     BookState
 } from './BookStateTypes';
 
@@ -39,6 +42,18 @@ export function updateBook(book: Book): ThunkAction<void, BookState, null, Actio
             dispatch({ type: UPDATE_BOOK_SUCCESS, payload: data });
         } catch (error) {
             dispatch({ type: UPDATE_BOOK_FAILURE, payload: error })
+        }
+    }
+}
+
+export function addBookCopy(book: Book): ThunkAction<void, BookState, null, Action<string>> {
+    return async (dispatch: any) => {
+        dispatch({ type: ADD_COPY_REQUEST });
+        try {
+            const data = await BookApi.addBookCopy(book);
+            dispatch({ type: ADD_COPY_SUCCESS, payload: data});
+        } catch (error) {
+            dispatch({ type: ADD_COPY_FAILURE, payload: error })
         }
     }
 }
