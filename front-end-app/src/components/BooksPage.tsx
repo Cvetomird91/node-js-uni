@@ -35,6 +35,10 @@ function BooksPage () {
     <>
         <h1>Books</h1>
 
+        <a href="/new-book">
+          <button className="primary">Add book title</button>
+        </a>
+
         {error && (
           <div className="row">
             <div className="card large error">
