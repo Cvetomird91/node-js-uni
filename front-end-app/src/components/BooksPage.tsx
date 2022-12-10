@@ -1,5 +1,6 @@
 import BookList from './BookList';
 import Book from '../types/Book';
+import BookCreationForm from '../components/BookCreationForm';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../state';
@@ -35,9 +36,7 @@ function BooksPage () {
     <>
         <h1>Books</h1>
 
-        <a href="/new-book">
-          <button className="primary">Add book title</button>
-        </a>
+        <BookCreationForm/>
 
         {error && (
           <div className="row">

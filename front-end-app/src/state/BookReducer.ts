@@ -1,15 +1,18 @@
 import {
     BookActionTypes,
+    BookState,
     LOAD_BOOKS_REQUEST,
     LOAD_BOOKS_SUCCESS,
     LOAD_BOOKS_FAILURE,
-    BookState,
     UPDATE_BOOK_REQUEST,
     UPDATE_BOOK_FAILURE,
     UPDATE_BOOK_SUCCESS,
     ADD_COPY_REQUEST,
     ADD_COPY_SUCCESS,
-    ADD_COPY_FAILURE
+    ADD_COPY_FAILURE,
+    ADD_TITLE_REQUEST,
+    ADD_TITLE_SUCCESS,
+    ADD_TITLE_FAILURE
 } from './BookStateTypes';
 import { Book } from '../types/Book';
 
@@ -62,7 +65,18 @@ export function bookReducer(
                 })
             }
         case ADD_COPY_FAILURE:
-            return { ...state, loading: true, error: '' };
+            return { ...state, loading: true, error: action.payload.message };
+        case ADD_TITLE_REQUEST:
+            return { ...state, error: '' };
+        case ADD_TITLE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                books: [...state.books, action.payload],
+                error: ''
+            }
+        case ADD_TITLE_FAILURE:
+            return { ...state, loading: true, error: action.payload.message }
         default:
             return state;
     }

@@ -15,7 +15,7 @@ function BookForm({  book: initialBook, onSave, onCancel }: BookFormProps) {
         date: '',
         author: '',
         ISBN: ''
-    });    
+    });
     const dispatch = useDispatch<ThunkDispatch<BookState, any, AnyAction>>();
 
     function validate(book: Book) {

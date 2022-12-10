@@ -9,7 +9,6 @@ import { addBookCopy } from '../state/BookActions';
 
 function BookCard(props: BookCardProps) {
   const { book, onEdit } = props;
-  const [ initialBook, setBook] = useState(book);
 
   const handleEditClick = (bookBeingEdited: Book) => {
     onEdit(bookBeingEdited);

@@ -13,6 +13,9 @@ import {
     ADD_COPY_REQUEST,
     ADD_COPY_SUCCESS,
     ADD_COPY_FAILURE,
+    ADD_TITLE_REQUEST,
+    ADD_TITLE_SUCCESS,
+    ADD_TITLE_FAILURE,
     BookState
 } from './BookStateTypes';
 
@@ -54,6 +57,18 @@ export function addBookCopy(book: Book): ThunkAction<void, BookState, null, Acti
             dispatch({ type: ADD_COPY_SUCCESS, payload: data});
         } catch (error) {
             dispatch({ type: ADD_COPY_FAILURE, payload: error })
+        }
+    }
+}
+
+export function addBookTitle(book: Book): ThunkAction<void, BookState, null, Action<string>> {
+    return async (dispatch: any) => {
+        dispatch({ type: ADD_TITLE_REQUEST });
+        try {
+            const data = await BookApi.addBookTitle(book);
+            dispatch({ type: ADD_TITLE_SUCCESS, payload: data});
+        } catch (error) {
+            dispatch({ type: ADD_TITLE_FAILURE, payload: error });
         }
     }
 }
