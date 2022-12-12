@@ -1,4 +1,5 @@
 import Book from "../types/Book";
+import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
@@ -17,8 +18,8 @@ const BookApi = {
                 query: `query { books { _id, title, ISBN, date, cover, author, numberOfCopies } }`
             })
         })
-        .then(checkStatus)
-        .then(parseJSON)
+        .then(RestUtils.checkStatus)
+        .then(RestUtils.parseJSON)
         .then(convertToBookModels)
         .catch((error: TypeError) => {
             console.log('log client error ' + error);
@@ -39,8 +40,8 @@ const BookApi = {
             query: `query { book(_id: "${bookId}") { _id title ISBN date cover author numberOfCopies } }`
         })
       })
-      .then(checkStatus)
-      .then(parseJSON)
+      .then(RestUtils.checkStatus)
+      .then(RestUtils.parseJSON)
       .then((data) => {
         if (!data.errors) {
           return new Book(data.data.book);
@@ -53,7 +54,7 @@ const BookApi = {
         throw new Error(
           'There was an error retrieving the book. Please try again.'
         );
-    });
+      });
     },
     editBook(book: Book) {
         return fetch(url, {
@@ -82,8 +83,8 @@ const BookApi = {
                         }`
             })
         })
-        .then(checkStatus)
-        .then(parseJSON)
+        .then(RestUtils.checkStatus)
+        .then(RestUtils.parseJSON)
         .then((data) => {
           if (!data.errors) {
             return new Book(data.data.editBook);
@@ -111,8 +112,8 @@ const BookApi = {
             query: `mutation { addBookCopy(ISBN: "${book.ISBN}") { _id, title, ISBN, date, cover, author, numberOfCopies } }`
         })
       })
-      .then(checkStatus)
-      .then(parseJSON)
+      .then(RestUtils.checkStatus)
+      .then(RestUtils.parseJSON)
       .then((data) => {
         console.log(data);
         if (!data.errors) {
@@ -141,8 +142,8 @@ const BookApi = {
           cover: "${book.cover}", author: "${book.author}"}) { _id title ISBN date cover author numberOfCopies } }`
         })
       })
-      .then(checkStatus)
-      .then(parseJSON)
+      .then(RestUtils.checkStatus)
+      .then(RestUtils.parseJSON)
       .then((data) => {
         console.log(data);
         if (!data.errors) {
@@ -159,35 +160,6 @@ const BookApi = {
       });
     }
 };
-
-function checkStatus(response: any) {
-    if (response.ok) {
-      return response;
-    } else {
-      const httpErrorInfo = {
-        status: response.status,
-        statusText: response.statusText,
-        url: response.url,
-      };
-      console.log(`log server http error: ${JSON.stringify(httpErrorInfo)}`);
-  
-      let errorMessage = translateStatusToErrorMessage(httpErrorInfo.status);
-      throw new Error(errorMessage);
-    }
-  }
-
-function translateStatusToErrorMessage(status: number) {
-    switch (status) {
-      case 500:
-        return 'Server error';
-      default:
-        return 'There was an error retrieving the project(s). Please try again.';
-  }
-}
-
-function parseJSON(response: Response) {
-    return response.json();
-}
 
 function convertToBookModels(data: any): Book[] {
     let books: Book[] = [];

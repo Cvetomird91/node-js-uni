@@ -1,4 +1,3 @@
-import { Book } from '../types/Book';
 import BookDetailProps from '../types/BookDetailProps';
 
 function BookDetail({ book }: BookDetailProps) {

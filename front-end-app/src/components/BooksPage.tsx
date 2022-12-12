@@ -1,5 +1,4 @@
 import BookList from './BookList';
-import Book from '../types/Book';
 import BookCreationForm from '../components/BookCreationForm';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,10 +27,6 @@ function BooksPage () {
     dispatch<any>(loadBooks());
   }, [dispatch]);
 
-  const saveBook = (book: Book) => {
-    console.log('Saving book: ', book);
-  }
-
   return (
     <>
         <h1>Books</h1>
@@ -51,7 +46,7 @@ function BooksPage () {
           </div>
         )}
 
-        <BookList books={books} onSave={saveBook}/>
+        <BookList books={books} />
 
         {loading && (
           <div className="center-page">

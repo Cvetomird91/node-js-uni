@@ -64,6 +64,7 @@ function BookCreationForm() {
         setErrors(() => validate(book));
         if (!isValid()) return;
         dispatch(addBookTitle(book));
+        setShow(false);
     }
 
     return (

@@ -7,7 +7,7 @@ import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { BookState } from '../state/BookStateTypes';
 
-function BookForm({  book: initialBook, onSave, onCancel }: BookFormProps) {
+function BookForm({  book: initialBook, onCancel }: BookFormProps) {
     const [book, setBook] = useState(initialBook);
     const [errors, setErrors] = useState({
         cover: '',

@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import BooksPage from './components/BooksPage';
 import BookPage from './components/BookPage';
+import ReadersPage from './components/ReadersPage';
 import { store } from './state';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<BooksPage />} />
             <Route path="/books/:id" element={<BookPage />} />
+            <Route path="/readers" element={<ReadersPage/>} />
           </Routes>
         </div>
       </Router>

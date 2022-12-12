@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import BookCard from './BookCard';
 import { Book } from '../types/Book';
 import BookListProps from '../types/BookListProps';
 import BookForm from './BookForm';
 
-function BookList({ books, onSave }: BookListProps) {
+function BookList({ books }: BookListProps) {
   const [bookBeingEdited, setBookBeingEdited] = useState({});
   const handleEdit = (book: Book) => {
     setBookBeingEdited(book);
@@ -19,7 +19,7 @@ function BookList({ books, onSave }: BookListProps) {
       {books.map((book) => (
         <div className="cols-sm">
           {book === bookBeingEdited ? (
-            <BookForm onCancel={cancelEditing} onSave={onSave} book={book}/>
+            <BookForm onCancel={cancelEditing} book={book}/>
           ) : (
             <BookCard book={book} onEdit={handleEdit}/>
           )}
