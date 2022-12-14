@@ -1,5 +1,6 @@
 import BookList from './BookList';
 import BookCreationForm from '../components/BookCreationForm';
+import ErrorCard from './ErrorCard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../state';
@@ -33,18 +34,7 @@ function BooksPage () {
 
         <BookCreationForm/>
 
-        {error && (
-          <div className="row">
-            <div className="card large error">
-              <section>
-                <p>
-                  <span className="icon-alert inverse "></span>
-                  {error}
-                </p>
-              </section>
-            </div>
-          </div>
-        )}
+        <ErrorCard error={error} />
 
         <BookList books={books} />
 
