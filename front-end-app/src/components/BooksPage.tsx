@@ -1,5 +1,6 @@
 import BookList from './BookList';
 import BookCreationForm from '../components/BookCreationForm';
+import LoadingSpinner from './LoadingSpinner';
 import ErrorCard from './ErrorCard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,19 +32,10 @@ function BooksPage () {
   return (
     <>
         <h1>Books</h1>
-
         <BookCreationForm/>
-
         <ErrorCard error={error} />
-
         <BookList books={books} />
-
-        {loading && (
-          <div className="center-page">
-            <span className="spinner primary"></span>
-            <p>Loading...</p>
-          </div>
-        )}
+        <LoadingSpinner loading={loading}/>
     </>
   )
 }

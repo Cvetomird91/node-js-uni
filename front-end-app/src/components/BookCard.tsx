@@ -1,10 +1,10 @@
 import Book from '../types/Book';
 import BookCardProps from '../types/BookCardProps';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { BookState } from '../state/BookStateTypes';
 import { AnyAction } from 'redux';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent } from 'react';
 import { addBookCopy } from '../state/BookActions';
 
 function BookCard(props: BookCardProps) {

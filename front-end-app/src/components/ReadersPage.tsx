@@ -6,13 +6,15 @@ import { ReaderState } from '../state/ReaderStateTypes';
 import { AnyAction } from 'redux';
 import { loadReaders } from '../state/ReaderActions';
 import ErrorCard from './ErrorCard';
+import LoadingSpinner from './LoadingSpinner';
+import ReaderList from './ReaderList';
 
 function ReadersPage() {
     const loading = useSelector(
         (appState: AppState) => appState.readerState.loading
     );
 
-    const books = useSelector(
+    const readers = useSelector(
         (appState: AppState) => appState.readerState.readers
     );
 
@@ -31,6 +33,8 @@ function ReadersPage() {
             <h1>Readers</h1>
 
             <ErrorCard error={error} />
+            <ReaderList readers={readers} />
+            <LoadingSpinner loading={loading}/>
         </>
     );
 }
