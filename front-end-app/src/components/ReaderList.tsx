@@ -1,15 +1,28 @@
 import ReaderListProps from "../types/ReaderListProps";
 import { useState } from 'react'
 import ReaderCard from "./ReaderCard";
+import ReaderForm from "./ReaderForm";
+import { Reader } from '../types/Reader';
 
 function ReaderList({ readers }: ReaderListProps) {
     const [readerBeingEdited, setReaderBeingEdited] = useState({});
+    const handleEdit = (reader: Reader) => {
+        setReaderBeingEdited(reader);
+    }
+
+    const cancelEditing = () => {
+        setReaderBeingEdited({});
+    }
 
     return (
         <div className="row">
             {readers.map((reader) => (
                 <div className="cols-sm">
-                    <ReaderCard reader={reader} />
+                    {reader === readerBeingEdited ? (
+                        <ReaderForm onCancel={cancelEditing} reader={reader}/>
+                    ) : (
+                        <ReaderCard reader={reader} onEdit={handleEdit} />
+                    )}
                 </div>
             ))}
         </div>

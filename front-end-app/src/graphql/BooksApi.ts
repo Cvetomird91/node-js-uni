@@ -3,7 +3,7 @@ import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzA3MTM0MDUsImV4cCI6MTY3MDc5OTgwNX0.LWfkVtSPVl1XsmpyAxsPnlAItvsJZlWhEEG3NswyX5I";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzEzMTcyODYsImV4cCI6MTY3MTQwMzY4Nn0.itVP2PURprDJ1xYJHJZ5tFpnC2sE7Meq4X-dgHyFDkw";
 
 const BookApi = {
     getAllBooks() {

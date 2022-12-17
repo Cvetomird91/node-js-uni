@@ -3,7 +3,7 @@ import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzExMDUxNjYsImV4cCI6MTY3MTE5MTU2Nn0.sxc0o1wSvORNMmolozcZboLdggjfkfMc6OobVMnbK88";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzEzMTcyODYsImV4cCI6MTY3MTQwMzY4Nn0.itVP2PURprDJ1xYJHJZ5tFpnC2sE7Meq4X-dgHyFDkw";
 
 const ReadersApi = {
     getAllReaders() {
@@ -34,8 +34,46 @@ const ReadersApi = {
               'There was an error retrieving the readers. Please try again.'
             );
         });
-    }
-};
+    },
+    updateReader(reader: Reader) {
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                //todo: store token in local storage after login
+                'Authentication': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                query: `mutation {
+                            editReader(_id:"${reader._id}", data:{
+                                firstName:"${reader.firstName}",
+                                lastName:"${reader.lastName}",
+                            }) {
+                                _id
+                                firstName
+                                lastName
+                                status
+                            }
+                        }`
+            })
+          })
+          .then(RestUtils.checkStatus)
+          .then(RestUtils.parseJSON)
+          .then((data) => {
+            if (!data.errors) {
+              return new Reader(data.data.editReader);
+            } else {
+              throw new Error(data.errors);
+            }
+          })
+          .catch((error: TypeError) => {
+            console.log('log client error ' + error);
+            throw new Error(
+                'There was an error updating a reader. Please try again.'
+            );
+          });
+        }
+}
 
 function convertToReaderModels(data: any): Reader[] {
     let readers: Reader[] = [];
