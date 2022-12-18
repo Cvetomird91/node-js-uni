@@ -25,7 +25,7 @@ function ReaderCard(props: ReaderCardProps) {
           <section className="section dark">
             <div><i>First Name: {reader.firstName}</i></div>
             <div><i>Last Name: {reader.lastName}</i></div>
-            <div><i>Status: {reader.status == 0 ? "Disabled" : "Enabled" }</i></div>
+            <div><i>Status: {reader.status === 0 ? "Disabled" : "Enabled" }</i></div>
             <div>
               <button
                 className=" bordered" onClick={() => {
@@ -35,7 +35,7 @@ function ReaderCard(props: ReaderCardProps) {
                 <span className="icon-edit "></span>
                 Edit
               </button>
-              {reader.status == 1 ?
+              {reader.status === 1 ?
               <button className="bordered" onClick={disableReaderClick}>
                 Disable user
               </button>
