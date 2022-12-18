@@ -12,3 +12,5 @@ export class Reader {
         if (initializer.status) this.status = initializer.status;
     }
 }
+
+export default Reader;

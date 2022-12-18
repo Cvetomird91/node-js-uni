@@ -61,11 +61,11 @@ export function addReader(reader: Reader): ThunkAction<void, ReaderState, null, 
     }
 }
 
-export function deleteReader(readerId: string): ThunkAction<void, ReaderState, null, Action<string>> {
+export function deleteReader(reader: Reader): ThunkAction<void, ReaderState, null, Action<string>> {
     return async (dispatch: any) => {
         dispatch({ type: DELETE_READER_REQUEST });
         try {
-            const data = await ReadersApi.deleteReader(readerId);
+            const data = await ReadersApi.deleteReader(reader._id);
             dispatch({ type: DELETE_READER_SUCCESS, payload: data});
         } catch (error) {
             dispatch({ type: DELETE_READER_FAILURE, payload: error });

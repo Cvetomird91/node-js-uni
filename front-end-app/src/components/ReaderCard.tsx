@@ -5,6 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { SyntheticEvent } from 'react';
 import { ReaderState } from '../state/ReaderStateTypes';
+import { deleteReader } from '../state/ReaderActions';
 
 function ReaderCard(props: ReaderCardProps) {
     const { reader, onEdit } = props;
@@ -14,6 +15,10 @@ function ReaderCard(props: ReaderCardProps) {
     }
 
     const dispatch = useDispatch<ThunkDispatch<ReaderState, any, AnyAction>>();
+    const disableReaderClick = (event: SyntheticEvent) => {
+      event.preventDefault();
+      dispatch(deleteReader(reader))
+    }
 
     return (
         <div className="card">
@@ -30,6 +35,11 @@ function ReaderCard(props: ReaderCardProps) {
                 <span className="icon-edit "></span>
                 Edit
               </button>
+              {reader.status == 1 ?
+              <button className="bordered" onClick={disableReaderClick}>
+                Disable user
+              </button>
+              :null }
           </div>
           </section>
         </div>

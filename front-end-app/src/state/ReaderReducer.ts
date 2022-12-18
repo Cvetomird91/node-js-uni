@@ -72,7 +72,7 @@ export function readerReducer(
             return {
                 ...state,
                 loading: false,
-                books: [...state.readers, action.payload],
+                readers: [...state.readers, action.payload],
                 error: ''
             }
         case ADD_READER_FAILURE:

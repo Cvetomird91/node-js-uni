@@ -8,6 +8,7 @@ import { loadReaders } from '../state/ReaderActions';
 import ErrorCard from './ErrorCard';
 import LoadingSpinner from './LoadingSpinner';
 import ReaderList from './ReaderList';
+import ReaderCreationForm from './ReaderCreationForm';
 
 function ReadersPage() {
     const loading = useSelector(
@@ -31,7 +32,7 @@ function ReadersPage() {
     return (
         <>
             <h1>Readers</h1>
-
+            <ReaderCreationForm/>
             <ErrorCard error={error} />
             <ReaderList readers={readers} />
             <LoadingSpinner loading={loading}/>
