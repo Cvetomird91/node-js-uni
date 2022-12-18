@@ -72,7 +72,80 @@ const ReadersApi = {
                 'There was an error updating a reader. Please try again.'
             );
           });
+    },
+    deleteReader(readerId: string) {
+        return fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              //todo: store token in local storage after login
+              'Authentication': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+              query: `mutation {
+                        deleteReader(_id: "${readerId}") {
+                          _id
+                          firstName
+                          lastName
+                          status
+                        }
+                      }`
+          })
+      })
+      .then(RestUtils.checkStatus)
+      .then(RestUtils.parseJSON)
+      .then((data) => {
+        if (!data.errors) {
+          return new Reader(data.data.deleteReader);
+        } else {
+          throw new Error(data.errors);
         }
+      })
+      .catch((error: TypeError) => {
+          console.log('log client error ' + error);
+          throw new Error(
+            'There was an error retrieving the readers. Please try again.'
+          );
+      });
+    },
+    addReader(reader: Reader) {
+      return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            //todo: store token in local storage after login
+            'Authentication': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            query: `mutation {
+                        addReader(data:{
+                            firstName:"${reader.firstName}",
+                            lastName:"${reader.lastName}",
+                        }) {
+                            _id
+                            firstName
+                            lastName
+                            status
+                        }
+                    }`
+        })
+      })
+      .then(RestUtils.checkStatus)
+      .then(RestUtils.parseJSON)
+      .then((data) => {
+        if (!data.errors) {
+          return new Reader(data.data.addReader);
+        } else {
+          throw new Error(data.errors);
+        }
+      })
+      .catch((error: TypeError) => {
+        console.log('log client error ' + error);
+        throw new Error(
+            'There was an error updating a reader. Please try again.'
+        );
+      });
+    }
 }
 
 function convertToReaderModels(data: any): Reader[] {
