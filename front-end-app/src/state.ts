@@ -10,12 +10,18 @@ import {
   initialReaderState,
   readerReducer,
 } from './state/ReaderReducer';
+import {
+  initialBorrowState,
+  borrowReducer,
+} from './state/BorrowReducer';
 import { BookState } from './state/BookStateTypes';
 import { ReaderState } from './state/ReaderStateTypes';
+import { BorrowState } from './state/BorrowStateTypes';
 
 const reducer = combineReducers({
   bookState: bookReducer,
-  readerState: readerReducer
+  readerState: readerReducer,
+  borrowState: borrowReducer
 });
 
 export default function configureStore(preloadedState: any) {
@@ -39,11 +45,13 @@ export default function configureStore(preloadedState: any) {
 export interface AppState {
   bookState: BookState;
   readerState: ReaderState;
+  borrowState: BorrowState;
 }
 
 export const initialAppState: AppState = {
     bookState: initialBookState,
     readerState: initialReaderState,
+    borrowState: initialBorrowState
 };
 
 export const store = configureStore(initialAppState);
