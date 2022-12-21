@@ -1,4 +1,4 @@
-import { Borrow } from '../types/ Borrow';
+import { Borrow } from '../types/Borrow';
 
 import {
     LOAD_BORROWS_SUCCESS,

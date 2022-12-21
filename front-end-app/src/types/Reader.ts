@@ -1,8 +1,11 @@
+import { Borrow } from '../types/Borrow';
+
 export class Reader {
     _id: string = '';
     firstName: string = '';
     lastName: string = '';
     status: Number = 0;
+    borrows: Borrow[] = [];
 
     constructor(initializer? :any) {
         if (!initializer) return;

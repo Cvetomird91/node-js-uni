@@ -10,6 +10,7 @@ import BooksPage from './components/BooksPage';
 import BookPage from './components/BookPage';
 import ReadersPage from './components/ReadersPage';
 import { store } from './state';
+import BorrowsPage from './components/BorrowsPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/" element={<BooksPage />} />
             <Route path="/books/:id" element={<BookPage />} />
             <Route path="/readers" element={<ReadersPage/>} />
+            <Route path="/borrows" element={<BorrowsPage/>} />
           </Routes>
         </div>
       </Router>
