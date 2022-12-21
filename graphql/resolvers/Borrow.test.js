@@ -202,7 +202,7 @@ describe('Borrow resolver', () => {
 
    });
 
-   it('attempt to borrow book from user with 0 status', async () => {
+   it('attempt to borrow book which is already borrowed', async () => {
 
        const reader = {
            _id: "609aee966fbcdd17db4d3d9a",
@@ -260,7 +260,7 @@ describe('Borrow resolver', () => {
         mockingoose(Reader).toReturn(reader, 'findOne');
 
         const result = await testServer.executeOperation({
-                                                             query: `mutation {
+               query: `mutation {
                    borrowBook(data: {
                      bookCopyId:"609ad74818789450a9b5ffb7",
                      readerId:"609aeed1a4a0d6192e5e8e1b",
