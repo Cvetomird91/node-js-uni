@@ -5,7 +5,7 @@ import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzE2MjE1NzUsImV4cCI6MTY3MTcwNzk3NX0.p9htU_YN887Sn6Ar4PlocboHy0963EwxOmwnYbX7fTo";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzE3MjEyMDgsImV4cCI6MTY3MTgwNzYwOH0.RlRZXWqI97HOqjA1rOCBSBP7_WXM4wqrH6SDCnqEEZQ";
 
 const BorrowsApi = {
     getBorrow(borrow: Borrow) {
@@ -93,6 +93,7 @@ const BorrowsApi = {
                             dateFrom
                             dateTo
                             status
+                            bookCopyId
                             }
                         }`
             })
@@ -204,14 +205,14 @@ const BorrowsApi = {
         .then(RestUtils.parseJSON)
         .then((data) => {
             if (!data.errors) {
-              const book: Book = new Book(data.data.borrowBook.book);
-              const reader: Reader = new Reader(data.data.borrowBook.reader);
+              const book: Book = new Book(data.data.returnBook.book);
+              const reader: Reader = new Reader(data.data.returnBook.reader);
 
-              return new Borrow({_id: data.data.borrowBook._id, 
+              return new Borrow({_id: data.data.returnBook._id, 
                 book, reader,
-                dateFrom: data.data.borrowBook.dateFrom, 
-                dateTo: data.data.borrowBook.dateTo, 
-                status: data.data.borrowBook.status});
+                dateFrom: data.data.returnBook.dateFrom, 
+                dateTo: data.data.returnBook.dateTo, 
+                status: data.data.returnBook.status});
             } else {
               throw new Error(data.errors);
             }
@@ -236,7 +237,8 @@ function convertToBorrowModels(data: any): Borrow[] {
                 book, reader,
                 dateFrom: borrow.dateFrom, 
                 dateTo: borrow.dateTo, 
-                status: borrow.status}));
+                status: borrow.status,
+                bookCopyId: borrow.bookCopyId}));
         });
     }
 

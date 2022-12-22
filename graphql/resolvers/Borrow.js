@@ -81,5 +81,6 @@ const populateBorrowData = async (borrow) => {
     const bookCopy = await BookCopy.findById(borrow.bookCopy).populate("bookId");
     borrow.reader = reader;
     borrow.book = bookCopy.bookId;
+    borrow.bookCopyId = bookCopy._id;
     return borrow;
 }

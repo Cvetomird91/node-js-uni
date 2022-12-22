@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import BorrowListProps from '../types/BorrowListProps';
+import BorrowReturnButton from '../components/BorrowReturnButton';
 
 function BorrowList(props: BorrowListProps) {
     const {borrows, readers} = props;
@@ -12,9 +12,7 @@ function BorrowList(props: BorrowListProps) {
     return (
         <div className="container">
             <div className="row">
-                
                     {readers.map((reader) => (
-
                         <div className="card">
                             <div className="section">
                                 <h5>Reader: {reader.firstName} {reader.lastName}</h5>
@@ -25,21 +23,20 @@ function BorrowList(props: BorrowListProps) {
                                 </h5>
                             </div>
                             {reader.borrows.length !== 0 ? 
-                            <div className="section">
-                                <ul>
-                                {reader.borrows.map((borrow) => (
-                                    <li>{borrow.book.author} - {borrow.book.title}, {borrow.book.ISBN}
-                                        {borrow.status === 0 ?
-                                            <button>Mark returned</button>    
-                                        : null}
-                                    </li>
-                                ))}
-                                </ul>
-                            </div>
+                                <div className="section">
+                                    <ul>
+                                    {reader.borrows.map((borrow) => (
+                                        <li>{borrow.book.author} - {borrow.book.title}, {borrow.book.ISBN}
+                                            {borrow.status === 1 ?
+                                                <BorrowReturnButton borrow={borrow}/>
+                                            : null}
+                                        </li>
+                                    ))}
+                                    </ul>
+                                </div>
                             : null }
                         </div>
                     ))}
-                
             </div>
         </div>
     );

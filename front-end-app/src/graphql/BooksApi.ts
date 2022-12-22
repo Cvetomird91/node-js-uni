@@ -3,7 +3,7 @@ import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzE2MjE1NzUsImV4cCI6MTY3MTcwNzk3NX0.p9htU_YN887Sn6Ar4PlocboHy0963EwxOmwnYbX7fTo";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzE3MjEyMDgsImV4cCI6MTY3MTgwNzYwOH0.RlRZXWqI97HOqjA1rOCBSBP7_WXM4wqrH6SDCnqEEZQ";
 
 const BookApi = {
     getAllBooks() {
@@ -115,7 +115,6 @@ const BookApi = {
       .then(RestUtils.checkStatus)
       .then(RestUtils.parseJSON)
       .then((data) => {
-        console.log(data);
         if (!data.errors) {
           return new Book(data.data.addBookCopy);
         } else {
@@ -145,7 +144,6 @@ const BookApi = {
       .then(RestUtils.checkStatus)
       .then(RestUtils.parseJSON)
       .then((data) => {
-        console.log(data);
         if (!data.errors) {
           return new Book(data.data.addTitle);
         } else {
