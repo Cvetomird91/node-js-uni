@@ -1,3 +1,5 @@
+import BookCopy from "./BookCopy";
+
 export class Book {
     _id: string = '';
     cover: string = '';
@@ -6,6 +8,7 @@ export class Book {
     author: string = '';
     ISBN: string = '';
     numberOfCopies: number = 0;
+    copies: BookCopy[] = [];
 
     constructor(initializer? : any) {
         if (!initializer) return;
@@ -16,6 +19,7 @@ export class Book {
         if (initializer.author) this.author = initializer.author;
         if (initializer.ISBN) this.ISBN = initializer.ISBN;
         if (initializer.numberOfCopies) this.numberOfCopies = initializer.numberOfCopies;
+        if (initializer.copies) this.copies = initializer.copies;
     }
 }
 

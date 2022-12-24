@@ -1,9 +1,10 @@
 import Book from "../types/Book";
+import BookCopy from "../types/BookCopy";
 import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzE3MjEyMDgsImV4cCI6MTY3MTgwNzYwOH0.RlRZXWqI97HOqjA1rOCBSBP7_WXM4wqrH6SDCnqEEZQ";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzE4ODk0OTgsImV4cCI6MTY3MTk3NTg5OH0.HMMz2T2xBQHF3a8RgmyI8xZGJRcsj0GKeT3gS11pjYk";
 
 const BookApi = {
     getAllBooks() {
@@ -15,7 +16,23 @@ const BookApi = {
                 'Authentication': `Bearer ${token}`
             },
             body: JSON.stringify({
-                query: `query { books { _id, title, ISBN, date, cover, author, numberOfCopies } }`
+                query: `query 
+                          { books 
+                            { 
+                              _id, 
+                              title 
+                              ISBN 
+                              date 
+                              cover
+                              author
+                              numberOfCopies
+                              copies {
+                                _id
+                                bookId
+                                status
+                              }
+                            } 
+                          }`
             })
         })
         .then(RestUtils.checkStatus)
@@ -162,8 +179,15 @@ const BookApi = {
 function convertToBookModels(data: any): Book[] {
     let books: Book[] = [];
     data.data.books.forEach((book: any) => {
-        books.push(new Book(book));
+        let copies: BookCopy[] = [];
+        book.copies.forEach((copy: any) => {
+          copies.push(new BookCopy(copy));
+        });
+        let b = new Book(book);
+        b.copies = copies;
+        books.push(b);
     });
+    console.log(books);
     return books;
 }
 

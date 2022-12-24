@@ -10,6 +10,7 @@ import { loadReaders } from '../state/ReaderActions';
 import ErrorCard from './ErrorCard';
 import LoadingSpinner from './LoadingSpinner';
 import BorrowList from './BorrowList';
+import BorrowCreationForm from './BorrowCreationForm';
 
 function BorrowsPage() {
     const loading = useSelector(
@@ -22,6 +23,10 @@ function BorrowsPage() {
 
     const readers = useSelector(
         (appState: AppState) => appState.readerState.readers
+    );
+
+    const books = useSelector(
+        (appState: AppState) => appState.bookState.books
     );
 
     const error = useSelector(
@@ -39,6 +44,7 @@ function BorrowsPage() {
     return (
         <>
             <h1>Borrows</h1>
+            <BorrowCreationForm borrows={borrows} books={books} readers={readers}/>
             <ErrorCard error={error} />
             <BorrowList borrows={borrows} readers={readers}/>
             <LoadingSpinner loading={loading}/>
