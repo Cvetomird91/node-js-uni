@@ -1,5 +1,6 @@
 import BorrowListProps from '../types/BorrowListProps';
 import BorrowReturnButton from '../components/BorrowReturnButton';
+import { useEffect } from 'react';
 
 function BorrowList(props: BorrowListProps) {
     const {borrows, readers} = props;
@@ -8,6 +9,12 @@ function BorrowList(props: BorrowListProps) {
     readers.map((reader) => {
         reader.borrows = borrows.filter((borrow) => borrow.reader._id === reader._id);
     })
+
+    useEffect(() => {
+        readers.map((reader) => {
+            reader.borrows = borrows.filter((borrow) => borrow.reader._id === reader._id);
+        });
+    });
 
     return (
         <div className="container">

@@ -5,7 +5,7 @@ import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzE4ODk0OTgsImV4cCI6MTY3MTk3NTg5OH0.HMMz2T2xBQHF3a8RgmyI8xZGJRcsj0GKeT3gS11pjYk";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzIzMTg5MzgsImV4cCI6MTY3MjQwNTMzOH0.GbEZNKqwYl3qVYZxSM0qDYJpmnqdcpeTd2hlcLPQgtI";
 
 const BorrowsApi = {
     getBorrow(borrow: Borrow) {
@@ -121,8 +121,8 @@ const BorrowsApi = {
                             borrowBook(data: {
                                 bookCopyId:"${borrow.bookCopyId}",
                                 readerId:"${borrow.reader._id}",
-                                dateFrom: "12-05-2021",
-                                dateTo: "12-06-2021"
+                                dateFrom: "${borrow.dateFrom}",
+                                dateTo: "${borrow.dateTo}"
                             }) {
                             _id
                             book {
@@ -216,7 +216,7 @@ const BorrowsApi = {
             } else {
               throw new Error(data.errors);
             }
-          })        
+          })
           .catch((error: TypeError) => {
             console.log('log client error ' + error);
             throw new Error(

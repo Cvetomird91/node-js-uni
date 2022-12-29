@@ -4,7 +4,7 @@ import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzE4ODk0OTgsImV4cCI6MTY3MTk3NTg5OH0.HMMz2T2xBQHF3a8RgmyI8xZGJRcsj0GKeT3gS11pjYk";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzIzMTg5MzgsImV4cCI6MTY3MjQwNTMzOH0.GbEZNKqwYl3qVYZxSM0qDYJpmnqdcpeTd2hlcLPQgtI";
 
 const BookApi = {
     getAllBooks() {
@@ -187,7 +187,6 @@ function convertToBookModels(data: any): Book[] {
         b.copies = copies;
         books.push(b);
     });
-    console.log(books);
     return books;
 }
 
