@@ -2,9 +2,9 @@ import { SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { ReaderState } from '../state/ReaderStateTypes';
-import Reader from '../types/Reader';
-import { addReader } from '../state/ReaderActions';
+import { ReaderState } from '../../state/readers/ReaderStateTypes';
+import Reader from '../../types/Reader';
+import { addReader } from '../../state/readers/ReaderActions';
 
 function ReaderCreationForm() {
     const [show, setShow] = useState(false);

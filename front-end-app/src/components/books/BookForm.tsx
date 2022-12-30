@@ -1,11 +1,11 @@
 import { SyntheticEvent, useState } from 'react';
-import { Book } from '../types/Book';
-import BookFormProps from '../types/BookFormProps';
+import { Book } from '../../types/Book';
+import BookFormProps from '../../types/BookFormProps';
 import { useDispatch } from 'react-redux';
-import { updateBook } from '../state/BookActions';
+import { updateBook } from '../../state/books/BookActions';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { BookState } from '../state/BookStateTypes';
+import { BookState } from '../../state/books/BookStateTypes';
 
 function BookForm({  book: initialBook, onCancel }: BookFormProps) {
     const [book, setBook] = useState(initialBook);

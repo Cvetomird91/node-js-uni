@@ -2,12 +2,12 @@ import { SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { BorrowState } from '../state/BorrowStateTypes';
-import { borrowBookCopy } from '../state/BorrowActions';
-import BorrowCreationFormProps from '../types/BorrowCreationFormProps';
-import BorrowCreationFormState from '../types/BorrowCreationFormState';
-import Reader from '../types/Reader';
-import Borrow from '../types/Borrow';
+import { BorrowState } from '../../state/borrows/BorrowStateTypes';
+import { borrowBookCopy } from '../../state/borrows/BorrowActions';
+import BorrowCreationFormProps from '../../types/BorrowCreationFormProps';
+import BorrowCreationFormState from '../../types/BorrowCreationFormState';
+import Reader from '../../types/Reader';
+import Borrow from '../../types/Borrow';
 
 function BorrowCreationForm(props: BorrowCreationFormProps) {
     const {borrows, books, readers} = props;

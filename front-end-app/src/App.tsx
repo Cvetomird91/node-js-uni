@@ -6,11 +6,11 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
-import BooksPage from './components/BooksPage';
-import BookPage from './components/BookPage';
-import ReadersPage from './components/ReadersPage';
+import BooksPage from './components/books/BooksPage';
+import BookPage from './components/books/BookPage';
+import ReadersPage from './components/readers/ReadersPage';
 import { store } from './state';
-import BorrowsPage from './components/BorrowsPage';
+import BorrowsPage from './components/borrows/BorrowsPage';
 
 function App() {
   return (

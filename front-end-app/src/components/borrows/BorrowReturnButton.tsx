@@ -1,11 +1,10 @@
 import { SyntheticEvent } from 'react';
-import { returnBookCopy } from '../state/BorrowActions';
-import BorrowReturnButtonProps from '../types/BorrowReturnButtonProps';
+import { returnBookCopy } from '../../state/borrows/BorrowActions';
+import BorrowReturnButtonProps from '../../types/BorrowReturnButtonProps';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { BorrowState } from '../state/BorrowStateTypes';
-
+import { BorrowState } from '../../state/borrows/BorrowStateTypes';
 
 function BorrowReturnButton(props: BorrowReturnButtonProps) {
     const { borrow } = props;

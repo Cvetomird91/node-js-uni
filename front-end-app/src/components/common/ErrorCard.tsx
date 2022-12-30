@@ -1,4 +1,4 @@
-import ErrorCardProps from "../types/ErrorCardProps";
+import ErrorCardProps from "../../types/ErrorCardProps";
 
 function ErrorCard(props: ErrorCardProps) {
     return (

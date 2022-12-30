@@ -14,7 +14,7 @@ import {
     ADD_READER_FAILURE,
     ADD_READER_REQUEST
 } from './ReaderStateTypes';
-import { Reader } from '../types/Reader';
+import { Reader } from '../../types/Reader';
 
 export const initialReaderState: ReaderState = {
     readers: [],

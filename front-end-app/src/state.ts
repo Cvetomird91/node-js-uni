@@ -5,18 +5,18 @@ import { combineReducers } from 'redux';
 import {
   initialBookState,
   bookReducer,
-} from './state/BookReducer';
+} from './state/books/BookReducer';
 import {
   initialReaderState,
   readerReducer,
-} from './state/ReaderReducer';
+} from './state/readers/ReaderReducer';
 import {
   initialBorrowState,
   borrowReducer,
-} from './state/BorrowReducer';
-import { BookState } from './state/BookStateTypes';
-import { ReaderState } from './state/ReaderStateTypes';
-import { BorrowState } from './state/BorrowStateTypes';
+} from './state/borrows/BorrowReducer';
+import { BookState } from './state/books/BookStateTypes';
+import { ReaderState } from './state/readers/ReaderStateTypes';
+import { BorrowState } from './state/borrows/BorrowStateTypes';
 
 const reducer = combineReducers({
   bookState: bookReducer,

@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { ReadersApi } from '../graphql/ReadersApi';
-import { Reader } from '../types/Reader';
+import { ReadersApi } from '../../graphql/ReadersApi';
+import { Reader } from '../../types/Reader';
 
 import {
     LOAD_READERS_SUCCESS,

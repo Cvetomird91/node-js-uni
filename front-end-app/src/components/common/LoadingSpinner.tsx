@@ -1,4 +1,4 @@
-import LoadingSpinnerProps from "../types/LoadingSpinnerProps";
+import LoadingSpinnerProps from "../../types/LoadingSpinnerProps";
 
 function LoadingSpinner(props: LoadingSpinnerProps) {
     return (

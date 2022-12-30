@@ -1,11 +1,11 @@
-import ReaderCardProps from "../types/ReaderCardProps";
-import { Reader } from '../types/Reader';
+import ReaderCardProps from "../../types/ReaderCardProps";
+import { Reader } from '../../types/Reader';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { SyntheticEvent } from 'react';
-import { ReaderState } from '../state/ReaderStateTypes';
-import { deleteReader } from '../state/ReaderActions';
+import { ReaderState } from '../../state/readers/ReaderStateTypes';
+import { deleteReader } from '../../state/readers/ReaderActions';
 
 function ReaderCard(props: ReaderCardProps) {
     const { reader, onEdit } = props;

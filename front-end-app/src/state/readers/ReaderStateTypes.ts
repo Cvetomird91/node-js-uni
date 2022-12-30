@@ -1,4 +1,4 @@
-import { Reader } from '../types/Reader';
+import { Reader } from '../../types/Reader';
 
 export const LOAD_READERS_REQUEST = 'LOAD_READERS_REQUEST';
 export const LOAD_READERS_SUCCESS = 'LOAD_READERS_SUCCESS';

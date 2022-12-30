@@ -1,12 +1,11 @@
-import ReaderFormProps from "../types/ReaderFormProps";
+import ReaderFormProps from "../../types/ReaderFormProps";
 import { SyntheticEvent, useState } from 'react';
-import { Reader } from '../types/Reader';
+import { Reader } from '../../types/Reader';
 import { useDispatch } from 'react-redux';
-import { updateBook } from '../state/BookActions';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { ReaderState } from "../state/ReaderStateTypes";
-import { updateReader } from "../state/ReaderActions";
+import { ReaderState } from "../../state/readers/ReaderStateTypes";
+import { updateReader } from "../../state/readers/ReaderActions";
 
 function ReaderForm({ reader: initialReader, onCancel}: ReaderFormProps) {
     const [reader, setReader] = useState(initialReader);

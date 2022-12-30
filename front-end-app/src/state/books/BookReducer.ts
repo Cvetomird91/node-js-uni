@@ -14,7 +14,7 @@ import {
     ADD_TITLE_SUCCESS,
     ADD_TITLE_FAILURE
 } from './BookStateTypes';
-import { Book } from '../types/Book';
+import { Book } from '../../types/Book';
 
 export const initialBookState: BookState = {
     books: [],

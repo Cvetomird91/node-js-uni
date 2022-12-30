@@ -2,9 +2,9 @@ import { SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { BookState } from '../state/BookStateTypes';
-import Book from '../types/Book';
-import { addBookTitle } from '../state/BookActions';
+import { BookState } from '../../state/books/BookStateTypes';
+import Book from '../../types/Book';
+import { addBookTitle } from '../../state/books/BookActions';
 
 function BookCreationForm() {
     const [show, setShow] = useState(false);

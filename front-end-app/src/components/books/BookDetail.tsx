@@ -1,4 +1,4 @@
-import BookDetailProps from '../types/BookDetailProps';
+import BookDetailProps from '../../types/BookDetailProps';
 
 function BookDetail({ book }: BookDetailProps) {
     return (

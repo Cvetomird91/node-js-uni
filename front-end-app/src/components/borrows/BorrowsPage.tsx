@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../state';
+import { AppState } from '../../state';
 import { ThunkDispatch } from 'redux-thunk';
-import { BorrowState } from '../state/BorrowStateTypes';
+import { BorrowState } from '../../state/borrows/BorrowStateTypes';
 import { AnyAction } from 'redux';
-import { loadBorrows } from '../state/BorrowActions';
-import { loadBooks } from '../state/BookActions';
-import { loadReaders } from '../state/ReaderActions';
-import ErrorCard from './ErrorCard';
-import LoadingSpinner from './LoadingSpinner';
+import { loadBorrows } from '../../state/borrows/BorrowActions';
+import { loadBooks } from '../../state/books/BookActions';
+import { loadReaders } from '../../state/readers/ReaderActions';
+import ErrorCard from '../common/ErrorCard';
+import LoadingSpinner from './../common/LoadingSpinner';
 import BorrowList from './BorrowList';
 import BorrowCreationForm from './BorrowCreationForm';
 

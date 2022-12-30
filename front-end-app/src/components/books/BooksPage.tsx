@@ -1,14 +1,14 @@
 import BookList from './BookList';
-import BookCreationForm from '../components/BookCreationForm';
-import LoadingSpinner from './LoadingSpinner';
-import ErrorCard from './ErrorCard';
+import BookCreationForm from './BookCreationForm';
+import LoadingSpinner from '../common/LoadingSpinner';
+import ErrorCard from '../common/ErrorCard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../state';
+import { AppState } from '../../state';
 import { ThunkDispatch } from 'redux-thunk';
-import { BookState } from '../state/BookStateTypes';
+import { BookState } from '../../state/books/BookStateTypes';
 import { AnyAction } from 'redux';
-import { loadBooks } from '../state/BookActions';
+import { loadBooks } from '../../state/books/BookActions';
 
 function BooksPage () {
   const loading = useSelector(

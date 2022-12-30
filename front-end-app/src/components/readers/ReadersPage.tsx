@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../state';
+import { AppState } from '../../state';
 import { ThunkDispatch } from 'redux-thunk';
-import { ReaderState } from '../state/ReaderStateTypes';
+import { ReaderState } from '../../state/readers/ReaderStateTypes';
 import { AnyAction } from 'redux';
-import { loadReaders } from '../state/ReaderActions';
-import ErrorCard from './ErrorCard';
-import LoadingSpinner from './LoadingSpinner';
+import { loadReaders } from '../../state/readers/ReaderActions';
+import ErrorCard from '../common/ErrorCard';
+import LoadingSpinner from './../common/LoadingSpinner';
 import ReaderList from './ReaderList';
 import ReaderCreationForm from './ReaderCreationForm';
 
