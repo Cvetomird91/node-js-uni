@@ -37,12 +37,14 @@ export default {
                 throw new UserInputError(`The reader is not active! reader id: ${args.data.readerId}`);
             }
 
-            if (bookBorrow.length != 0) {
-                throw new UserInputError(`The book copy is already borrowed! book copy ${args.data.bookCopyId}`);
+            if (bookBorrow.length !== 0 &&
+                bookBorrow.some((borrow) => borrow.status === 1)) {
+                    throw new UserInputError(`The book copy is already borrowed! book copy ${args.data.bookCopyId}`);
             }
 
             const dateFrom = new Date(args.data.dateFrom);
             const dateTo = new Date(args.data.dateTo);
+
 
             const newBorrow = new Borrow({bookCopy: args.data.bookCopyId,
                                           readerId: args.data.readerId,

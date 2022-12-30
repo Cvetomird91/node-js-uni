@@ -1,20 +1,15 @@
 import BorrowListProps from '../types/BorrowListProps';
 import BorrowReturnButton from '../components/BorrowReturnButton';
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 
 function BorrowList(props: BorrowListProps) {
     const {borrows, readers} = props;
 
-    //todo: refactor the backend to facilitate this relation
-    readers.map((reader) => {
-        reader.borrows = borrows.filter((borrow) => borrow.reader._id === reader._id);
-    })
-
-    useEffect(() => {
+    useMemo(() => {
         readers.map((reader) => {
             reader.borrows = borrows.filter((borrow) => borrow.reader._id === reader._id);
         });
-    });
+    }, [props.readers, props.borrows]);
 
     return (
         <div className="container">

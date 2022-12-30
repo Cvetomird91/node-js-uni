@@ -5,7 +5,7 @@ import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzIzMTg5MzgsImV4cCI6MTY3MjQwNTMzOH0.GbEZNKqwYl3qVYZxSM0qDYJpmnqdcpeTd2hlcLPQgtI";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzI0MTE2NDAsImV4cCI6MTY3MjQ5ODA0MH0.g1n7D_DGRGCyKCpamoCdcF2sPsB5Mjy6FubhtjfK1MU";
 
 const BorrowsApi = {
     getBorrow(borrow: Borrow) {
@@ -141,6 +141,7 @@ const BorrowsApi = {
                             }
                             dateFrom
                             dateTo
+                            status
                             }
                         }`
             })
@@ -151,6 +152,8 @@ const BorrowsApi = {
             if (data && !data.errors) {
               const book: Book = new Book(data.data.borrowBook.book);
               const reader: Reader = new Reader(data.data.borrowBook.reader);
+
+              console.log(data.data.borrowBook.status);
 
               return new Borrow({_id: data.data.borrowBook._id, 
                 book, reader,
@@ -164,7 +167,7 @@ const BorrowsApi = {
           .catch((error: TypeError) => {
             console.log('log client error ' + error);
             throw new Error(
-              'There was an error retrieving the borrowing the copy. Please try again.'
+              'There was an error borrowing the copy. Please try again.'
             );
         });
     },

@@ -50,7 +50,7 @@ function BorrowCreationForm(props: BorrowCreationFormProps) {
                         {books.map((book) => {
                             return book.copies.filter(
                                         (copy) => 
-                                            !borrows.find((borrow) => borrow.bookCopyId === copy._id)
+                                            !borrows.find((borrow) => borrow.bookCopyId === copy._id && borrow.status === 1)
                                     )
                                         .map((copy) => (
                                         <option value={copy._id}>{book.author} - {book.title}, ISBN: {book.ISBN}</option>

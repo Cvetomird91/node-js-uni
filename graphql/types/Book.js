@@ -19,6 +19,13 @@ export default `
         author: String!
         numberOfCopies: Int
         isDeleted: String
+        copies: [BookCopy]
+    }
+
+    type BookCopy {
+        _id: String!
+        bookId: String!
+        status: Int
     }
 
     type Query {
