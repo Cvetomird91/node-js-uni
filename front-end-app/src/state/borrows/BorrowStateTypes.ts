@@ -1,6 +1,4 @@
 import { Borrow } from '../../types/Borrow';
-import { Book } from '../../types/Book';
-import { Reader } from '../../types/Reader';
 
 //action types
 export const LOAD_BORROWS_REQUEST = 'LOAD_BORROWS_REQUEST';

@@ -52,9 +52,9 @@ export function bookReducer(
                 })
             }
         case UPDATE_BOOK_FAILURE:
-            return { ...state, error: action.payload.message };
+            return { ...state, loading: false, error: action.payload.message };
         case ADD_COPY_REQUEST:
-            return { ...state, loading: true, error: '' };
+            return { ...state, error: '' };
         case ADD_COPY_SUCCESS:
             return {
                 ...state,
@@ -65,7 +65,7 @@ export function bookReducer(
                 })
             }
         case ADD_COPY_FAILURE:
-            return { ...state, loading: true, error: action.payload.message };
+            return { ...state, loading: false, error: action.payload.message };
         case ADD_TITLE_REQUEST:
             return { ...state, error: '' };
         case ADD_TITLE_SUCCESS:
@@ -76,7 +76,7 @@ export function bookReducer(
                 error: ''
             }
         case ADD_TITLE_FAILURE:
-            return { ...state, loading: true, error: action.payload.message }
+            return { ...state, loading: false, error: action.payload.message }
         default:
             return state;
     }
