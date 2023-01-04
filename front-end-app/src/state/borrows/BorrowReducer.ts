@@ -49,7 +49,7 @@ export function borrowReducer(
                 error: ''
             }
         case BORROW_BOOK_FAILURE:
-            return { ...state, loading: true, error: action.payload.message }
+            return { ...state, loading: false, error: action.payload.message }
         //update book request
         case RETURN_BOOK_REQUEST:
             return { ...state };
