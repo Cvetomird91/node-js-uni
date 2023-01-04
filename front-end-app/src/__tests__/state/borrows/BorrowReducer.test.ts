@@ -14,6 +14,9 @@ import {
 import Book from "../../../types/Book";
 import Borrow from "../../../types/Borrow";
 import Reader from "../../../types/Reader";
+import {bookReducer, initialBookState} from "../../../state/books/BookReducer";
+import {UPDATE_BOOK_FAILURE, UPDATE_BOOK_SUCCESS} from "../../../state/books/BookStateTypes";
+import {MOCK_BOOKS} from "../../__mocks__/MockBooks";
 
 describe('borrow reducer', () => {
     test('should request all borrows', () => {
@@ -131,5 +134,53 @@ describe('borrow reducer', () => {
                 type: BORROW_BOOK_REQUEST
             })
         ).toEqual(loadingState)
+    });
+
+    test('update book request', () => {
+        const currentState = { ...initialBorrowState };
+        const loadingState = {
+            ...initialBorrowState,
+            loading: false
+        };
+
+        expect(
+            borrowReducer(currentState, {
+                type: RETURN_BOOK_REQUEST
+            })
+        ).toEqual(loadingState)
+    });
+
+    test('return book failure', () => {
+        const currentState = { ...initialBorrowState };
+        const loadedState = {
+            loading: false,
+            error: 'return book failure',
+            borrows: []
+        };
+
+        expect(
+            borrowReducer(currentState, {
+                type: RETURN_BOOK_FAILURE,
+                payload: { message: 'return book failure' }
+            })
+        ).toEqual(loadedState);
+    });
+
+    test('should update an existing borrow', () => {
+        const borrow = MOCK_BORROWS[0];
+        const updatedBorrow = Object.assign(new Borrow(), borrow, {
+            dateFrom: "2024-01-01",
+        })
+        const currentState = { ...initialBorrowState, borrows: [borrow]};
+        const updatedState = {
+            ...initialBorrowState,
+            borrows: [updatedBorrow]
+        };
+        expect(
+            borrowReducer(currentState, {
+                type: RETURN_BOOK_SUCCESS,
+                payload: updatedBorrow
+            })
+        ).toEqual(updatedState)
     });
 });
