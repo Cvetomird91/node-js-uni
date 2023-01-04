@@ -76,7 +76,7 @@ export function readerReducer(
                 error: ''
             }
         case ADD_READER_FAILURE:
-            return { ...state, loading: true, error: action.payload.message }
+            return { ...state, loading: false, error: action.payload.message }
         default:
             return state;
     }
