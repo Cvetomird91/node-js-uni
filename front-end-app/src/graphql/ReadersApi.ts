@@ -1,4 +1,4 @@
-import { Reader } from '../types/Reader';
+import { Reader } from '../types/readers/Reader';
 import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';

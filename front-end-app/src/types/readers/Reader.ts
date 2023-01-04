@@ -1,4 +1,4 @@
-import { Borrow } from '../types/Borrow';
+import { Borrow } from '../borrows/Borrow';
 
 export class Reader {
     _id: string = '';

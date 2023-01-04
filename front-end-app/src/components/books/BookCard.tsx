@@ -1,5 +1,5 @@
-import Book from '../../types/Book';
-import BookCardProps from '../../types/BookCardProps';
+import Book from '../../types/books/Book';
+import BookCardProps from '../../types/books/BookCardProps';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { BookState } from '../../state/books/BookStateTypes';

@@ -1,8 +1,8 @@
-import ReaderListProps from "../../types/ReaderListProps";
+import ReaderListProps from "../../types/readers/ReaderListProps";
 import { useState } from 'react'
 import ReaderCard from "./ReaderCard";
 import ReaderForm from "./ReaderForm";
-import { Reader } from '../../types/Reader';
+import { Reader } from '../../types/readers/Reader';
 
 function ReaderList({ readers }: ReaderListProps) {
     const [readerBeingEdited, setReaderBeingEdited] = useState({});

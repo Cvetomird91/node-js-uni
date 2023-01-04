@@ -1,6 +1,6 @@
 import Borrow from './Borrow';
-import Book from './Book';
-import Reader from './Reader';
+import Book from '../books/Book';
+import Reader from '../readers/Reader';
 
 interface BorrowCreationFormProps {
     borrows: Borrow[];

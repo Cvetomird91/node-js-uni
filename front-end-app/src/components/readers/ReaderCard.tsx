@@ -1,5 +1,5 @@
-import ReaderCardProps from "../../types/ReaderCardProps";
-import { Reader } from '../../types/Reader';
+import ReaderCardProps from "../../types/readers/ReaderCardProps";
+import { Reader } from '../../types/readers/Reader';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';

@@ -1,4 +1,4 @@
-import { Borrow } from '../../types/Borrow';
+import { Borrow } from '../../types/borrows/Borrow';
 import {MOCK_BOOKS} from "./MockBooks";
 import {MOCK_READERS} from "./MockReaders";
 

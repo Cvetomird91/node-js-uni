@@ -1,4 +1,4 @@
-import { Reader } from '../types/Reader';
+import { Reader } from './Reader';
 
 interface ReaderListProps {
     readers: Reader[];

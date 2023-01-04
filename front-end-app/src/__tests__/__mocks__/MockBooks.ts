@@ -1,4 +1,4 @@
-import { Book } from '../../types/Book';
+import { Book } from '../../types/books/Book';
 
 export const MOCK_BOOKS = [
     new Book({image: "https://images-na.ssl-images-amazon.com/images/I/41CB164PM5L._SX325_BO1,204,203,200_.jpg", 

@@ -1,5 +1,5 @@
 import { Borrow } from './Borrow';
-import { Reader } from './Reader';
+import { Reader } from '../readers/Reader';
 
 interface BorrowListProps {
     borrows: Borrow[];

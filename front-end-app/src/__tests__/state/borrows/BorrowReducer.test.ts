@@ -11,9 +11,9 @@ import {
     RETURN_BOOK_FAILURE,
     RETURN_BOOK_SUCCESS
 } from '../../../../src/state/borrows/BorrowStateTypes';
-import Book from "../../../types/Book";
-import Borrow from "../../../types/Borrow";
-import Reader from "../../../types/Reader";
+import Book from "../../../types/books/Book";
+import Borrow from "../../../types/borrows/Borrow";
+import Reader from "../../../types/readers/Reader";
 import {bookReducer, initialBookState} from "../../../state/books/BookReducer";
 import {UPDATE_BOOK_FAILURE, UPDATE_BOOK_SUCCESS} from "../../../state/books/BookStateTypes";
 import {MOCK_BOOKS} from "../../__mocks__/MockBooks";

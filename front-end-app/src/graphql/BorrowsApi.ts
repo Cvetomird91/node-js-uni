@@ -1,6 +1,6 @@
-import { Reader } from '../types/Reader';
-import { Book } from '../types/Book';
-import { Borrow } from '../types/Borrow';
+import { Reader } from '../types/readers/Reader';
+import { Book } from '../types/books/Book';
+import { Borrow } from '../types/borrows/Borrow';
 import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';

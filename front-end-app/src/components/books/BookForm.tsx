@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
-import { Book } from '../../types/Book';
-import BookFormProps from '../../types/BookFormProps';
+import { Book } from '../../types/books/Book';
+import BookFormProps from '../../types/books/BookFormProps';
 import { useDispatch } from 'react-redux';
 import { updateBook } from '../../state/books/BookActions';
 import { AnyAction } from 'redux';

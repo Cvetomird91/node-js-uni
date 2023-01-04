@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { returnBookCopy } from '../../state/borrows/BorrowActions';
-import BorrowReturnButtonProps from '../../types/BorrowReturnButtonProps';
+import BorrowReturnButtonProps from '../../types/borrows/BorrowReturnButtonProps';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';

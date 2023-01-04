@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { BorrowsApi } from '../../graphql/BorrowsApi';
-import { Borrow } from '../../types/Borrow';
+import { Borrow } from '../../types/borrows/Borrow';
 
 import {
     LOAD_BORROWS_SUCCESS,

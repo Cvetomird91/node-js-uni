@@ -1,5 +1,5 @@
-import Book from "../types/Book";
-import BookCopy from "../types/BookCopy";
+import Book from "../types/books/Book";
+import BookCopy from "../types/books/BookCopy";
 import RestUtils from '../utils/RestUtils';
 
 const baseUrl = 'http://localhost:3000';

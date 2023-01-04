@@ -14,8 +14,8 @@ import {
     UPDATE_BOOK_REQUEST,
     UPDATE_BOOK_SUCCESS
 } from '../../../../src/state/books/BookStateTypes';
-import Book from '../../../types/Book';
-import BookCopy from "../../../types/BookCopy";
+import Book from '../../../types/books/Book';
+import BookCopy from "../../../types/books/BookCopy";
 
 describe('book reducer', () => {
     test('should update an existing book', () => {

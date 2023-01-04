@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { BookApi } from '../../graphql/BooksApi';
-import { Book } from '../../types/Book';
+import { Book } from '../../types/books/Book';
 
 import {
     LOAD_BOOKS_SUCCESS,

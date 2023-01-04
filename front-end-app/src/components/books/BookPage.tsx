@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Book } from '../../types/Book';
+import { Book } from '../../types/books/Book';
 import { BookApi } from '../../graphql/BooksApi';
 import BookDetail from './BookDetail';
 

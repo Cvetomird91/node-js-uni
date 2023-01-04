@@ -4,10 +4,10 @@ import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { BorrowState } from '../../state/borrows/BorrowStateTypes';
 import { borrowBookCopy } from '../../state/borrows/BorrowActions';
-import BorrowCreationFormProps from '../../types/BorrowCreationFormProps';
-import BorrowCreationFormState from '../../types/BorrowCreationFormState';
-import Reader from '../../types/Reader';
-import Borrow from '../../types/Borrow';
+import BorrowCreationFormProps from '../../types/borrows/BorrowCreationFormProps';
+import BorrowCreationFormState from '../../types/borrows/BorrowCreationFormState';
+import Reader from '../../types/readers/Reader';
+import Borrow from '../../types/borrows/Borrow';
 
 function BorrowCreationForm(props: BorrowCreationFormProps) {
     const {borrows, books, readers} = props;

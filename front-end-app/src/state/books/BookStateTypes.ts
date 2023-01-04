@@ -1,4 +1,4 @@
-import { Book } from '../../types/Book';
+import { Book } from '../../types/books/Book';
 
 //action types
 export const LOAD_BOOKS_REQUEST = 'LOAD_BOOKS_REQUEST';

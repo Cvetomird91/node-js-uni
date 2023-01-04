@@ -1,5 +1,5 @@
-import { Reader } from './Reader';
-import { Book } from './Book';
+import { Reader } from '../readers/Reader';
+import { Book } from '../books/Book';
 
 export class Borrow {
     _id: string = '';

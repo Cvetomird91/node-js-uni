@@ -1,4 +1,4 @@
-import { Reader } from '../../types/Reader';
+import { Reader } from '../../types/readers/Reader';
 
 export const MOCK_READERS = [
     new Reader({fristName: "Ivan" , lastName: "Ivanov", status: 1}),

@@ -1,4 +1,4 @@
-import { Borrow } from '../../types/Borrow';
+import { Borrow } from '../../types/borrows/Borrow';
 
 //action types
 export const LOAD_BORROWS_REQUEST = 'LOAD_BORROWS_REQUEST';

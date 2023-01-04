@@ -15,7 +15,7 @@ import {
     ADD_READER_REQUEST
 } from '../../../../src/state/readers/ReaderStateTypes';
 // @ts-ignore
-import { Reader } from '../../../types/Reader';
+import { Reader } from '../../../types/readers/Reader';
 
 describe('reader reducer', () => {
 

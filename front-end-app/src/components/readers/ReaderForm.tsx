@@ -1,6 +1,6 @@
-import ReaderFormProps from "../../types/ReaderFormProps";
+import ReaderFormProps from "../../types/readers/ReaderFormProps";
 import { SyntheticEvent, useState } from 'react';
-import { Reader } from '../../types/Reader';
+import { Reader } from '../../types/readers/Reader';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';

@@ -1,4 +1,4 @@
-import BorrowListProps from '../../types/BorrowListProps';
+import BorrowListProps from '../../types/borrows/BorrowListProps';
 import BorrowReturnButton from './BorrowReturnButton';
 import { useMemo } from 'react';
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import BookCard from './BookCard';
-import { Book } from '../../types/Book';
-import BookListProps from '../../types/BookListProps';
+import { Book } from '../../types/books/Book';
+import BookListProps from '../../types/books/BookListProps';
 import BookForm from './BookForm';
 
 function BookList({ books }: BookListProps) {

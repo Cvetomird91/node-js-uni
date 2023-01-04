@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { BookState } from '../../state/books/BookStateTypes';
-import Book from '../../types/Book';
+import Book from '../../types/books/Book';
 import { addBookTitle } from '../../state/books/BookActions';
 
 function BookCreationForm() {
