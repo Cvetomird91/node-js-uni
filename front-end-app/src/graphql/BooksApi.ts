@@ -6,7 +6,7 @@ const baseUrl = 'http://localhost:3000';
 const url = `${baseUrl}/graphql`;
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoYW5nZWRlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NzIzMTg5MzgsImV4cCI6MTY3MjQwNTMzOH0.GbEZNKqwYl3qVYZxSM0qDYJpmnqdcpeTd2hlcLPQgtI";
 
-const BookApi = {
+const BooksApi = {
     getAllBooks() {
         return fetch(url, {
             method: 'POST',
@@ -190,4 +190,4 @@ function convertToBookModels(data: any): Book[] {
     return books;
 }
 
-export { BookApi };
+export { BooksApi };

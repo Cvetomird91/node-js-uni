@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { BookApi } from '../../graphql/BooksApi';
+import { BooksApi } from '../../graphql/BooksApi';
 import { Book } from '../../types/books/Book';
 
 import {
@@ -22,7 +22,7 @@ import {
 export function loadBooks(): ThunkAction<Promise<Book[] | Error>, BookState, null, Action<string>> {
     return (dispatch: any) => {
         dispatch({ type: LOAD_BOOKS_REQUEST });
-        return BookApi
+        return BooksApi
             .getAllBooks()
             .then((data) => {
                 dispatch({
@@ -41,7 +41,7 @@ export function updateBook(book: Book): ThunkAction<void, BookState, null, Actio
     return async (dispatch: any) => {
         dispatch({ type: UPDATE_BOOK_REQUEST });
         try {
-            const data = await BookApi.editBook(book);
+            const data = await BooksApi.editBook(book);
             dispatch({ type: UPDATE_BOOK_SUCCESS, payload: data });
         } catch (error) {
             dispatch({ type: UPDATE_BOOK_FAILURE, payload: error })
@@ -53,7 +53,7 @@ export function addBookCopy(book: Book): ThunkAction<void, BookState, null, Acti
     return async (dispatch: any) => {
         dispatch({ type: ADD_COPY_REQUEST });
         try {
-            const data = await BookApi.addBookCopy(book);
+            const data = await BooksApi.addBookCopy(book);
             dispatch({ type: ADD_COPY_SUCCESS, payload: data});
         } catch (error) {
             dispatch({ type: ADD_COPY_FAILURE, payload: error })
@@ -65,7 +65,7 @@ export function addBookTitle(book: Book): ThunkAction<void, BookState, null, Act
     return async (dispatch: any) => {
         dispatch({ type: ADD_TITLE_REQUEST });
         try {
-            const data = await BookApi.addBookTitle(book);
+            const data = await BooksApi.addBookTitle(book);
             dispatch({ type: ADD_TITLE_SUCCESS, payload: data});
         } catch (error) {
             dispatch({ type: ADD_TITLE_FAILURE, payload: error });
